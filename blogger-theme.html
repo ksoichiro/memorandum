@@ -964,7 +964,7 @@ head.appendChild(script);
         <div class='column-center-outer'>
         <div class='column-center-inner'>
           <b:section class='main' id='main' showaddelement='no'>
-            <b:widget id='Blog1' locked='true' title='ブログの投稿' type='Blog'>
+            <b:widget id='Blog1' locked='true' title='ブログの投稿' type='Blog' version='1'>
               <b:widget-settings>
                 <b:widget-setting name='showDateHeader'>true</b:widget-setting>
                 <b:widget-setting name='style.textcolor'>#333333</b:widget-setting>
@@ -2083,23 +2083,6 @@ head.appendChild(script);
 </macro:includable>
 
 <b:section-contents id='sidebar-right-1'>
-  <b:widget id='PlusOne1' locked='false' title='+1 Button' type='PlusOne'>
-    <b:widget-settings>
-      <b:widget-setting name='annotation'>BUBBLE</b:widget-setting>
-      <b:widget-setting name='size'>STANDARD</b:widget-setting>
-    </b:widget-settings>
-    <b:includable id='main'>
-
-  <div class='widget-content'>
-    <g:plusone expr:annotation='data:annotation' expr:href='data:blog.homepageUrl.canonical.http' expr:size='data:size' source='blogger:blog:plusone' width='250'/>
-
-    <script type='text/javascript'>
-      window.___gcfg = {&quot;lang&quot;: &quot;<data:language/>&quot;};
-    </script>
-  </div>
-
-</b:includable>
-  </b:widget>
   <b:widget id='Profile1' locked='false' title='About me' type='Profile'>
     <b:widget-settings>
       <b:widget-setting name='showaboutme'>true</b:widget-setting>
