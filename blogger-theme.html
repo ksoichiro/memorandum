@@ -110,9 +110,9 @@ URL:      www.noaesthetic.com
    <Variable name="body.background.override" description="Body Background Override" type="string" default="" value=""/>
 
    <Variable name="body.background.gradient.cap" description="Body Gradient Cap" type="url"
-       default="url(//www.blogblog.com/1kt/simple/gradients_light.png)" value="url(http://www.blogblog.com/1kt/simple/gradients_light.png)"/>
+       default="url(//www.blogblog.com/1kt/simple/gradients_light.png)" value="url(//www.blogblog.com/1kt/simple/gradients_light.png)"/>
    <Variable name="body.background.gradient.tile" description="Body Gradient Tile" type="url"
-       default="url(//www.blogblog.com/1kt/simple/body_gradient_tile_light.png)" value="url(http://www.blogblog.com/1kt/simple/body_gradient_tile_light.png)"/>
+       default="url(//www.blogblog.com/1kt/simple/body_gradient_tile_light.png)" value="url(//www.blogblog.com/1kt/simple/body_gradient_tile_light.png)"/>
 
    <Variable name="content.background.color.selector" description="Content Background Color Selector" type="string" default=".content-inner" value=".content-inner"/>
    <Variable name="content.padding" description="Content Padding" type="length" default="10px" value="10px"/>
@@ -138,7 +138,7 @@ URL:      www.noaesthetic.com
    <Variable name="tabs.margin.top" description="Tabs Margin Top" type="length" default="0"  value="0"/>
    <Variable name="tabs.margin.side" description="Tabs Side Margin" type="length" default="30px"  value="30px"/>
    <Variable name="tabs.background.gradient" description="Tabs Background Gradient" type="url"
-       default="url(//www.blogblog.com/1kt/simple/gradients_light.png)" value="url(http://www.blogblog.com/1kt/simple/gradients_light.png)"/>
+       default="url(//www.blogblog.com/1kt/simple/gradients_light.png)" value="url(//www.blogblog.com/1kt/simple/gradients_light.png)"/>
    <Variable name="tabs.border.width" description="Tabs Border Width" type="length" default="1px" value="1px"/>
    <Variable name="tabs.bevel.border.width" description="Tabs Bevel Border Width" type="length" default="1px" value="1px"/>
 
@@ -857,7 +857,7 @@ head.appendChild(script);
       <b:section class='tabs' id='crosscol' maxwidgets='1' showaddelement='yes'>
         <b:widget id='PageList1' locked='false' title='ページ' type='PageList'>
           <b:widget-settings>
-            <b:widget-setting name='pageListJson'><![CDATA[{'home': {'href': 'http://ksoichiro.blogspot.com/', 'title': 'blog', 'position': 0}, '4582010464726914629': {'href': 'http://ksoichiro.blogspot.com/p/blog-page.html', 'title': 'apps', 'position': 1}, 'link0': {'href': 'https://github.com/ksoichiro', 'title': 'github', 'position': 2}}]]></b:widget-setting>
+            <b:widget-setting name='pageListJson'><![CDATA[{'home': {'href': 'https://ksoichiro.blogspot.com/', 'title': 'blog', 'position': 0}, '4582010464726914629': {'href': 'https://ksoichiro.blogspot.com/p/blog-page.html', 'title': 'apps', 'position': 1}, 'link0': {'href': 'https://github.com/ksoichiro', 'title': 'github', 'position': 2}}]]></b:widget-setting>
             <b:widget-setting name='homeTitle'>blog</b:widget-setting>
           </b:widget-settings>
           <b:includable id='main'>
@@ -1410,16 +1410,6 @@ head.appendChild(script);
 
           <div class='post-body entry-content' expr:id='&quot;post-body-&quot; + data:post.id' itemprop='articleBody'>
             <data:post.body/>
-<div class='related-posts-widget'>
-&lt;!-- {
-	blog_url:&#39;http://ksoichiro.blogspot.jp/&#39;
-	,max_posts:6
-    ,thumbs:0
-    ,post_page_only:1
-	,related_title:&#39;関連記事&#39;
-} --&gt;
-読込中..
-</div>
             <div style='clear: both;'/> <!-- clear for photos floats -->
           </div>
 
@@ -1557,15 +1547,6 @@ head.appendChild(script);
 
     <div class='post-body entry-content' expr:id='&quot;post-body-&quot; + data:post.id'>
       <data:post.body/>
-<div class='related-posts-widget'>
-&lt;!-- {
-	blog_url:&#39;http://ksoichiro.blogspot.jp/&#39;
-	,max_posts:6
-    ,thumbs:0
-    ,post_page_only:1
-	,related_title:&#39;関連記事&#39;
-} --&gt;
-</div>
       <div style='clear: both;'/> <!-- clear for photos floats -->
     </div>
 
@@ -1576,7 +1557,7 @@ head.appendChild(script);
     </b:if>
 
     <div class='post-footer'>
-<!-- iframe allowTransparency='true' expr:src='&quot;http://www.facebook.com/plugins/like.php?href=&quot; + data:post.url + &quot;&amp;layout=standard&amp;show_faces=false&amp;width=100&amp;action=like&amp;font=arial&amp;colorscheme=light&quot;' frameborder='0' scrolling='no' style='border:none; overflow:hidden; width:450px; height:28px;'/ -->
+<!-- iframe allowTransparency='true' expr:src='&quot;https://www.facebook.com/plugins/like.php?href=&quot; + data:post.url + &quot;&amp;layout=standard&amp;show_faces=false&amp;width=100&amp;action=like&amp;font=arial&amp;colorscheme=light&quot;' frameborder='0' scrolling='no' style='border:none; overflow:hidden; width:450px; height:28px;'/ -->
     <div class='post-footer-line post-footer-line-1'><span class='post-author vcard'>
         <b:if cond='data:top.showAuthor'>
           <data:top.authorLabel/>
@@ -1610,7 +1591,7 @@ head.appendChild(script);
         <b:if cond='data:post.emailPostUrl'>
           <span class='item-action'>
           <a expr:href='data:post.emailPostUrl' expr:title='data:top.emailPostMsg'>
-              <img alt='' class='icon-action' height='13' src='http://img1.blogblog.com/img/icon18_email.gif' width='18'/>
+              <img alt='' class='icon-action' height='13' src='//img1.blogblog.com/img/icon18_email.gif' width='18'/>
           </a>
           </span>
         </b:if>
@@ -1657,7 +1638,7 @@ head.appendChild(script);
   <b:if cond='data:post.editUrl'>
     <span expr:class='&quot;item-control &quot; + data:post.adminClass'>
       <a expr:href='data:post.editUrl' expr:title='data:top.editPostMsg'>
-        <img alt='' class='icon-action' height='18' src='https://resources.blogblog.com/img/icon18_edit_allbkg.gif' width='18'/>
+        <img alt='' class='icon-action' height='18' src='//resources.blogblog.com/img/icon18_edit_allbkg.gif' width='18'/>
       </a>
     </span>
   </b:if>
