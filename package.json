@@ -2,9 +2,11 @@
   "name": "memorandum",
   "version": "0.0.0",
   "devDependencies": {
+    "clean-css-cli": "^4.2.1",
     "local-web-server": "^2.6.0"
   },
   "scripts": {
-    "start": "ws"
+    "start": "ws",
+    "css": "cleancss -o memorandum.min.css default.css memorandum.css -d"
   }
 }
