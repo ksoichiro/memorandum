@@ -368,3 +368,10 @@ body {
   min-width: 0;
   width: auto;
 }
+
+.mobile .columns.fauxcolumns {
+  padding-right: 0px;
+}
+.mobile .fauxcolumn-outer.fauxcolumn-right-outer {
+  display: none;
+}
