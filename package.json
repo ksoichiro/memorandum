@@ -7,6 +7,7 @@
   },
   "scripts": {
     "start": "ws",
-    "css": "cleancss -o memorandum.min.css memorandum.css -d"
+    "css": "cleancss -o memorandum.min.css memorandum.css -d",
+    "css:inline": "cleancss -o inline.min.css inline.css -d"
   }
 }

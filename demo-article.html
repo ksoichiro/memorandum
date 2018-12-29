@@ -1,0 +1,1833 @@
+<!DOCTYPE html>
+<html class='v2' dir='ltr' lang='ja' xmlns='http://www.w3.org/1999/xhtml' xmlns:b='http://www.google.com/2005/gml/b' xmlns:data='http://www.google.com/2005/gml/data' xmlns:expr='http://www.google.com/2005/gml/expr'>
+<head>
+<link href='https://www.blogger.com/static/v1/widgets/2727757643-css_bundle_v2.css' rel='stylesheet' type='text/css'/>
+<meta content='IE=EmulateIE7' http-equiv='X-UA-Compatible'/>
+<meta content='width=1100' name='viewport'/>
+<meta content='text/html; charset=UTF-8' http-equiv='Content-Type'/>
+<meta content='blogger' name='generator'/>
+<link href='https://ksoichiro.blogspot.com/favicon.ico' rel='icon' type='image/x-icon'/>
+<link href='https://ksoichiro.blogspot.com/2017/01/constructor-injection.html' rel='canonical'/>
+<link rel="alternate" type="application/atom+xml" title="memorandum - Atom" href="https://ksoichiro.blogspot.com/feeds/posts/default" />
+<link rel="alternate" type="application/rss+xml" title="memorandum - RSS" href="https://ksoichiro.blogspot.com/feeds/posts/default?alt=rss" />
+<link rel="service.post" type="application/atom+xml" title="memorandum - Atom" href="https://www.blogger.com/feeds/7702612945354492373/posts/default" />
+
+<link rel="alternate" type="application/atom+xml" title="memorandum - Atom" href="https://ksoichiro.blogspot.com/feeds/1685647220146011906/comments/default" />
+<!--[if IE]><script type="text/javascript" src="https://www.blogger.com/static/v1/jsbin/864213505-ieretrofit.js"></script>
+<![endif]-->
+<meta content='https://ksoichiro.blogspot.com/2017/01/constructor-injection.html' property='og:url'/>
+<meta content='Constructor Injectionに変えてみる' property='og:title'/>
+<meta content='Android, iOSのモバイルアプリ開発などを中心としたITに関するメモのブログです。' property='og:description'/>
+<!--[if IE]> <script> (function() { var html5 = ("abbr,article,aside,audio,canvas,datalist,details," + "figure,footer,header,hgroup,mark,menu,meter,nav,output," + "progress,section,time,video").split(','); for (var i = 0; i < html5.length; i++) { document.createElement(html5[i]); } try { document.execCommand('BackgroundImageCache', false, true); } catch(e) {} })(); </script> <![endif]-->
+<title>Constructor Injectionに変えてみる | memorandum</title>
+<style id='page-skin-1' type='text/css'><!--
+
+--></style>
+<style id='template-skin-1' type='text/css'><!--
+
+--></style>
+<style>
+body{background:#c5eaf7;font:normal normal 12px Arial,Tahoma,Helvetica,FreeSans,sans-serif;padding:0}#navbar{display:none}.content-fauxcolumn-outer,.content-outer,.region-inner{min-width:960px;max-width:960px}.content-inner{padding:0}.content-inner{background-color:#fff}.Header h1{font:normal normal 42px Helvetica,Tahoma,Verdana,Courier,sans-serif;color:#39b}h1.title{font-family:Helvetica,Tahoma,Verdana,Courier,sans-serif;font-weight:600;font-size:4em}div.fauxborder-left,h2,h3,h3.post-title,h4{font-family:sans-serif}.header-inner .Header .titlewrapper{padding:22px 30px}.titlewrapper .title{margin:0 10px}.header-inner .Header .titlewrapper{padding:22px 30px}.descriptionwrapper .description{margin:0 10px 10px}.Header .description{font-size:120%;color:#555}.comments h4,h3.post-title{font:normal normal 22px Arial,Tahoma,Helvetica,FreeSans,sans-serif;margin:.75em 0 0}h3.post-title{font-weight:400;border-bottom:4px solid #ddd;margin-top:0;margin-bottom:8px}h2{margin:0 0 1em 0;font:normal bold 11px Arial,Tahoma,Helvetica,FreeSans,sans-serif;color:#000}h2{border-bottom:1px solid #eee;color:#666}h2.date-header{border-bottom:none;display:none}.post-body h2{font-size:1.2em}.post-body{font-size:110%;line-height:1.4;position:relative}h2.date-header{border-bottom:none;display:none}.main-inner .column-center-inner{padding:0 15px}.main-inner .column-center-inner .section{margin:0 15px}.main-outer{padding:10px 10px}a:link{text-decoration:none;color:#135a7c}a:visited{text-decoration:none;color:#888}.main-inner .fauxcolumn-center-outer{left:0;right:260px}.main-inner .fauxcolumn-left-outer{width:0}.main-inner .fauxcolumn-right-outer{width:260px}.main-inner .column-left-outer{width:0;right:100%;margin-left:0}.main-inner .column-right-outer{width:260px;margin-right:-260px}.main-inner .columns{padding-left:0;padding-right:260px}.main-inner .fauxcolumn-right-outer{width:260px}.mobile .columns.fauxcolumns{padding-right:0}.mobile .fauxcolumn-outer.fauxcolumn-right-outer{display:none}.tabs-inner .section:first-child{border-top:1px solid #eee}.tabs-inner .section:first-child ul{margin-top:-1px;border-top:1px solid #eee;border-left:0 solid #eee;border-right:0 solid #eee}.tabs-inner .widget ul{background:#f8f8f8}.tabs-inner .widget ul{background:#f5f5f5 repeat-x scroll 0 -800px;border-bottom:1px solid #eee;margin-top:0;margin-left:-30px;margin-right:-30px}.tabs-inner .widget li a{display:inline-block;padding:.6em 1em;font:normal normal 14px Arial,Tahoma,Helvetica,FreeSans,sans-serif;color:#999;border-left:1px solid #fff;border-right:1px solid #eee}.tabs-inner .widget li:first-child a{border-left:none}.tabs-inner .widget li a:hover,.tabs-inner .widget li.selected a{color:#000;background-color:#eee;text-decoration:none}html body .region-inner{min-width:0;max-width:100%;width:auto}
+</style>
+<link as='style' href='memorandum.css' onload='this.rel=&#39;stylesheet&#39;' rel='preload'/>
+<!-- Google -->
+<meta content='iolc8aYoLDMORrrgiNv92khWY9gMZvQ8azgitm58AE8' name='google-site-verification'/>
+<!-- Bing -->
+<meta content='B1AE8520CD12A01897BF45431D62EDBA' name='msvalidate.01'/>
+<link href='https://www.blogger.com/dyn-css/authorization.css?targetBlogID=7702612945354492373&amp;zx=4a3f5c8d-c97e-401f-8dc8-2d2181080295' media='none' onload='if(media!=&#39;all&#39;)media=&#39;all&#39;' rel='stylesheet'/><noscript><link href='https://www.blogger.com/dyn-css/authorization.css?targetBlogID=7702612945354492373&amp;zx=4a3f5c8d-c97e-401f-8dc8-2d2181080295' rel='stylesheet'/></noscript>
+
+</head>
+<body class='loading'>
+<div class='navbar no-items section' id='navbar'>
+</div>
+<div class='body-fauxcolumns'>
+<div class='fauxcolumn-outer body-fauxcolumn-outer'>
+<div class='cap-top'>
+<div class='cap-left'></div>
+<div class='cap-right'></div>
+</div>
+<div class='fauxborder-left'>
+<div class='fauxborder-right'></div>
+<div class='fauxcolumn-inner'>
+</div>
+</div>
+<div class='cap-bottom'>
+<div class='cap-left'></div>
+<div class='cap-right'></div>
+</div>
+</div>
+</div>
+<div class='content'>
+<div class='content-fauxcolumns'>
+<div class='fauxcolumn-outer content-fauxcolumn-outer'>
+<div class='cap-top'>
+<div class='cap-left'></div>
+<div class='cap-right'></div>
+</div>
+<div class='fauxborder-left'>
+<div class='fauxborder-right'></div>
+<div class='fauxcolumn-inner'>
+</div>
+</div>
+<div class='cap-bottom'>
+<div class='cap-left'></div>
+<div class='cap-right'></div>
+</div>
+</div>
+</div>
+<div class='content-outer'>
+<div class='content-cap-top cap-top'>
+<div class='cap-left'></div>
+<div class='cap-right'></div>
+</div>
+<div class='fauxborder-left content-fauxborder-left'>
+<div class='fauxborder-right content-fauxborder-right'></div>
+<div class='content-inner'>
+<header>
+<div class='header-outer'>
+<div class='header-cap-top cap-top'>
+<div class='cap-left'></div>
+<div class='cap-right'></div>
+</div>
+<div class='fauxborder-left header-fauxborder-left'>
+<div class='fauxborder-right header-fauxborder-right'></div>
+<div class='region-inner header-inner'>
+<div class='header section' id='header'><div class='widget Header' data-version='1' id='Header1'>
+<div id='header-inner'>
+<div class='titlewrapper'>
+<h1 class='title'>
+<a href='https://ksoichiro.blogspot.com/'>
+memorandum
+</a>
+</h1>
+</div>
+<div class='descriptionwrapper'>
+<p class='description'><span>Android, iOSのモバイルアプリ開発などを中心としたITに関するメモのブログです&#12290;<br>
+最近はWebアプリ開発関連でSpring Boot&#12289;Play Framework&#12289;Ruby on Railsなども触っています&#12290;</span></p>
+</div>
+</div>
+</div></div>
+</div>
+</div>
+<div class='header-cap-bottom cap-bottom'>
+<div class='cap-left'></div>
+<div class='cap-right'></div>
+</div>
+</div>
+</header>
+<div class='tabs-outer'>
+<div class='tabs-cap-top cap-top'>
+<div class='cap-left'></div>
+<div class='cap-right'></div>
+</div>
+<div class='fauxborder-left tabs-fauxborder-left'>
+<div class='fauxborder-right tabs-fauxborder-right'></div>
+<div class='region-inner tabs-inner'>
+<div class='tabs section' id='crosscol'><div class='widget PageList' data-version='1' id='PageList1'>
+<h2>ページ</h2>
+<div class='widget-content'>
+<ul>
+<li>
+<a href='https://ksoichiro.blogspot.com/'>blog</a>
+</li>
+<li>
+<a href='https://ksoichiro.blogspot.com/p/blog-page.html'>apps</a>
+</li>
+<li>
+<a href='https://github.com/ksoichiro'>github</a>
+</li>
+</ul>
+</div>
+</div></div>
+<div class='tabs no-items section' id='crosscol-overflow'></div>
+</div>
+</div>
+<div class='tabs-cap-bottom cap-bottom'>
+<div class='cap-left'></div>
+<div class='cap-right'></div>
+</div>
+</div>
+<div class='main-outer'>
+<div class='main-cap-top cap-top'>
+<div class='cap-left'></div>
+<div class='cap-right'></div>
+</div>
+<div class='fauxborder-left main-fauxborder-left'>
+<div class='fauxborder-right main-fauxborder-right'></div>
+<div class='region-inner main-inner'>
+<div class='columns fauxcolumns'>
+<div class='fauxcolumn-outer fauxcolumn-center-outer'>
+<div class='cap-top'>
+<div class='cap-left'></div>
+<div class='cap-right'></div>
+</div>
+<div class='fauxborder-left'>
+<div class='fauxborder-right'></div>
+<div class='fauxcolumn-inner'>
+</div>
+</div>
+<div class='cap-bottom'>
+<div class='cap-left'></div>
+<div class='cap-right'></div>
+</div>
+</div>
+<div class='fauxcolumn-outer fauxcolumn-left-outer'>
+<div class='cap-top'>
+<div class='cap-left'></div>
+<div class='cap-right'></div>
+</div>
+<div class='fauxborder-left'>
+<div class='fauxborder-right'></div>
+<div class='fauxcolumn-inner'>
+</div>
+</div>
+<div class='cap-bottom'>
+<div class='cap-left'></div>
+<div class='cap-right'></div>
+</div>
+</div>
+<div class='fauxcolumn-outer fauxcolumn-right-outer'>
+<div class='cap-top'>
+<div class='cap-left'></div>
+<div class='cap-right'></div>
+</div>
+<div class='fauxborder-left'>
+<div class='fauxborder-right'></div>
+<div class='fauxcolumn-inner'>
+</div>
+</div>
+<div class='cap-bottom'>
+<div class='cap-left'></div>
+<div class='cap-right'></div>
+</div>
+</div>
+<!-- corrects IE6 width calculation -->
+<div class='columns-inner'>
+<div class='column-center-outer'>
+<div class='column-center-inner'>
+<div class='main section' id='main'><div class='widget Blog' data-version='1' id='Blog1'>
+<div class='blog-posts hfeed'>
+
+          <div class="date-outer">
+
+<h2 class='date-header'><span>2017/01/05</span></h2>
+
+          <div class="date-posts">
+
+<div class='post-outer'>
+<div class='post hentry'>
+<a name='1685647220146011906'></a>
+<h3 class='post-title entry-title'>
+Constructor Injectionに変えてみる
+</h3>
+<div class='post-header'>
+<div class='post-header-line-1'></div>
+<div class='labelheader'>
+<span class='post-timestamp-custom'>
+<span class='post-timestampISO8601'>2017-01-05T23:23:00+09:00</span>
+</span>
+<span class='post-header-item-divider'>|</span>
+<span class='post-labels'>
+<a href='https://ksoichiro.blogspot.com/search/label/Spring%20Framework' rel='tag'>
+Spring Framework</a>
+</span></div>
+</div>
+<div class='post-body entry-content' id='post-body-1685647220146011906'>
+<p><a href="http://pppurple.hatenablog.com/entry/2016/12/29/233141">SpringでField InjectionよりConstructor Injectionが推奨される理由</a> を読んで&#12289;Springにおいて@Autowiredをフィールドに付与するField Injection&#12289;普通に使ってしまっているなぁ&#8230;と考えつつ&#12289;Constructor Injectionの方が確かに良さそうなので試してみた&#12290;これ自体は補足することはないが&#12289;Spring 4.2以前+Gradle+Querydslという点で少し躓いたのでメモ&#12290;</p>
+
+<p>各種バージョンなどは以下のとおり&#12290;(いずれも少し古い)</p>
+
+<ul>
+<li>Spring Boot 1.3.2.RELEASE (Spring Framework 4.2.4.RELEASE)</li>
+<li>Gradle 2.11</li>
+<li>Lombok 1.16.2</li>
+<li>Querydsl 3.6.7</li>
+</ul>
+
+<a name='more'></a>
+
+<h3 id="書き換え">書き換え</h3>
+
+<p>Lombokを使っているので<code>@RequiredArgsConstructor</code>を使った&#12290; <br>
+ここで問題となったのが<code>@__</code>の部分&#12290; <br>
+Querydslも使っているプロジェクトでは&#12289;Lombokが動く前にQuerydsl用のクラスの自動生成をAnnotation Processorで行うため&#12289;<code>@__</code> が解決できずコンパイルエラーになってしまう&#12290;</p>
+
+<p>Gradleでの解決策が見つからなかったが&#12289;以下を発見&#12290; <br>
+<a href="https://github.com/ewerk/gradle-plugins/issues/59">https://github.com/ewerk/gradle-plugins/issues/59</a> <br>
+LombokのProcessorを同時に指定してあげれば解決できるということ&#12290;</p>
+
+<p>上記Issueに書かれているものを少し変えて&#12289;以下のような感じでprocessorを複数指定して無事解決&#12290;</p>
+
+<pre class="prettyprint"><code class="language-groovy hljs bash">task generateQuerydsl(<span class="hljs-built_in">type</span>: JavaCompile) {
+    <span class="hljs-built_in">source</span> = <span class="hljs-built_in">source</span>Sets.main.java
+    classpath = configurations.compile + configurations.provided
+    destinationDir = querydslDir
+    options.compilerArgs += [
+        <span class="hljs-string">'-proc:only'</span>,
+        <span class="hljs-string">'-processor'</span>, [
+            <span class="hljs-string">'com.mysema.query.apt.jpa.JPAAnnotationProcessor'</span>,
+            <span class="hljs-string">'lombok.launch.AnnotationProcessorHider$AnnotationProcessor'</span>,
+        ].join(<span class="hljs-string">','</span>)
+    ]
+}</code></pre>
+
+<h3 id="configurationへの対応">Configurationへの対応</h3>
+
+<p><code>@Configuration</code>に対して適用したところBean Creationが失敗&#12290; <br>
+<a href="https://docs.spring.io/spring/docs/current/spring-framework-reference/html/beans.html">ドキュメント</a>を確認すると</p>
+
+<ul>
+<li><code>@Configuration</code>ではCGLIBを利用する影響でデフォルトコンストラクタが必要(Spring 4.2まで)</li>
+<li><code>@Component</code>にすればそうした制約はない</li>
+</ul>
+
+<p>ということで&#12289;<code>@Configuration</code>を<code>@Component</code>に変えてみると確かに動く&#12290;</p>
+
+<p>とはいえ動いたとしても<code>@Configuration</code>をやめるほどのメリットがわからなかったので現時点ではやめておく&#12290;</p>
+<div style='clear: both;'></div>
+</div>
+<div class='post-footer'>
+<div class='post-footer-line post-footer-line-1'><span class='post-author vcard'>
+</span>
+<span class='post-comment-link'>
+</span>
+<span class='post-icons'>
+</span>
+<span class='post-backlinks post-comment-link'>
+</span>
+<div class='post-share-buttons goog-inline-block'>
+</div>
+</div>
+<div class='post-footer-line post-footer-line-3'><span class='reaction-buttons'>
+</span>
+</div>
+</div>
+</div>
+<div class='comments' id='comments'>
+<a name='comments'></a>
+<h4>0 件のコメント:</h4>
+<div id='Blog1_comments-block-wrapper'>
+<dl class='avatar-comment-indent' id='comments-block'>
+</dl>
+</div>
+<p class='comment-footer'>
+<div class='comment-form'>
+<a name='comment-form'></a>
+<h4 id='comment-post-message'>コメントを投稿</h4>
+<p>
+</p>
+<a href='https://www.blogger.com/comment-iframe.g?blogID=7702612945354492373&postID=1685647220146011906' id='comment-editor-src'></a>
+<iframe allowtransparency='true' class='blogger-iframe-colorize blogger-comment-from-post' frameborder='0' height='410px' id='comment-editor' name='comment-editor' src='' width='100%'></iframe>
+<script src='https://www.blogger.com/static/v1/jsbin/55386745-comment_from_post_iframe.js' type='text/javascript'></script>
+<script type='text/javascript'>
+      BLOG_CMT_createIframe('https://www.blogger.com/rpc_relay.html');
+    </script>
+</div>
+</p>
+<div id='backlinks-container'>
+<div id='Blog1_backlinks-container'>
+</div>
+</div>
+</div>
+</div>
+<div class='inline-ad'>
+</div>
+
+        </div></div>
+
+</div>
+<div class='blog-pager' id='blog-pager'>
+<span id='blog-pager-newer-link'>
+<a class='blog-pager-newer-link' href='https://ksoichiro.blogspot.com/2018/12/ci.html' id='Blog1_blog-pager-newer-link' title='次の投稿'>次の投稿</a>
+</span>
+<span id='blog-pager-older-link'>
+<a class='blog-pager-older-link' href='https://ksoichiro.blogspot.com/2016/12/spring-data-jpa.html' id='Blog1_blog-pager-older-link' title='前の投稿'>前の投稿</a>
+</span>
+<a class='home-link' href='https://ksoichiro.blogspot.com/'>ホーム</a>
+</div>
+<div class='clear'></div>
+<div class='post-feeds'>
+<div class='feed-links'>
+登録:
+<a class='feed-link' href='https://ksoichiro.blogspot.com/feeds/1685647220146011906/comments/default' rel='noopener' target='_blank' type='application/atom+xml'>コメントの投稿 (Atom)</a>
+</div>
+</div>
+<script type='text/javascript'>
+    window.___gcfg = { 'lang': 'ja' };
+  </script>
+</div></div>
+</div>
+</div>
+<div class='column-left-outer'>
+<div class='column-left-inner'>
+<aside>
+</aside>
+</div>
+</div>
+<div class='column-right-outer'>
+<div class='column-right-inner'>
+<aside>
+<div class='sidebar section' id='sidebar-right-1'><div class='widget Profile' data-version='1' id='Profile1'>
+<h2>About me</h2>
+<div class='widget-content'>
+<a href='https://www.blogger.com/profile/13313957386090295244'><img alt='自分の写真' class='profile-img' height='80' src='//images-blogger-opensocial.googleusercontent.com/gadgets/proxy?url=http://2.bp.blogspot.com/_rtlYXd55yO0/S-QM0muR-_I/AAAAAAAAFIc/GMsZvjsfF14/S220/DSC_0055-1.jpg&container=blogger&gadget=a&rewriteMime=image/*' width='80'/></a>
+<dl class='profile-datablock'>
+<dt class='profile-data'>
+<a class='profile-name-link g-profile' href='https://www.blogger.com/profile/13313957386090295244' rel='author' style='background-image: url(//www.blogger.com/img/logo-16.png);'>
+ksoichiro
+</a>
+</dt>
+<dd class='profile-textblock'>I love coding, and I am interested in: Android, iOS, Java, Groovy, Objective-C, C, C++, Go, Markdown, Gradle, Spring Boot, Play Framework, Ruby on Rails, IntelliJ, Eclipse, Android Studio, Xcode, vim, Travis CI, Docker, Vagrant, GitLab, and so on.
+<br>
+<a href="https://github.com/ksoichiro">GitHub</a><br>
+<a href="https://androider.jp/developer/d890c024d13c888c0dcd52d914505a28/?from=developerBanner">アンドロイダー</a></dd>
+</dl>
+<a class='profile-link' href='https://www.blogger.com/profile/13313957386090295244' rel='author'>詳細プロフィールを表示</a>
+</div>
+</div><div class='widget BlogSearch' data-version='1' id='BlogSearch1'>
+<h2 class='title'>このブログを検索</h2>
+<div class='widget-content'>
+<div id='BlogSearch1_form'>
+<form action='https://ksoichiro.blogspot.com/search' class='gsc-search-box' target='_top'>
+<table cellpadding='0' cellspacing='0' class='gsc-search-box'>
+<tbody>
+<tr>
+<td class='gsc-input'>
+<input autocomplete='off' class='gsc-input' name='q' size='10' title='search' type='text' value=''/>
+</td>
+<td class='gsc-search-button'>
+<input class='gsc-search-button' title='search' type='submit' value='検索'/>
+</td>
+</tr>
+</tbody>
+</table>
+</form>
+</div>
+</div>
+</div><div class='widget AdSense' data-version='1' id='AdSense1'>
+<div class='widget-content'>
+<script type="text/javascript">
+    google_ad_client = "ca-pub-1323408760822838";
+    google_ad_host = "ca-host-pub-1556223355139109";
+    google_ad_host_channel = "L0001";
+    google_ad_slot = "7880902530";
+    google_ad_width = 180;
+    google_ad_height = 150;
+</script>
+<!-- ksoichiro_sidebar-right-1_AdSense1_180x150_as -->
+<script type="text/javascript"
+src="//pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+</div><div class='widget PopularPosts' data-version='1' id='PopularPosts2'>
+<h2>人気の投稿</h2>
+<div class='widget-content popular-posts'>
+<ul>
+<li>
+<div class='item-content'>
+<div class='item-thumbnail'>
+<a href='https://ksoichiro.blogspot.com/2013/06/ios-uiscrollviewstoryboard.html' rel='noopener' target='_blank'>
+<img alt='' border='0' src='//4.bp.blogspot.com/-uiNBuPr6nsE/UcwyRvmDsAI/AAAAAAAALpY/Y8MeVJ_zyS0/w72-h72-p-k-no-nu/%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%BC%E3%83%B3%E3%82%B7%E3%83%A7%E3%83%83%E3%83%88+2013-06-27+21.24.40.png'/>
+</a>
+</div>
+<div class='item-title'><a href='https://ksoichiro.blogspot.com/2013/06/ios-uiscrollviewstoryboard.html'>iOS: UIScrollViewをStoryboardで使うときのスクロールのさせ方</a></div>
+<div class='item-snippet'> 基本的なことかと思いますが&#12289;しばらく分からず時間を費やしてしまったのでメモします&#12290;  UIScrollViewを使って何となくStoryboardでパーツをドラッグ&#65286;ドロップするだけで作っていったところ&#12289;スクロールしませんでした&#12290;  以下の構造を想定します&#12290;   UIView ...</div>
+</div>
+<div style='clear: both;'></div>
+</li>
+<li>
+<div class='item-content'>
+<div class='item-title'><a href='https://ksoichiro.blogspot.com/2016/12/spring-data-jpa.html'>Spring Data JPAで複数テーブルを結合した結果を返すクエリを作る</a></div>
+<div class='item-snippet'>少し前に検証したものだが&#12289;改めて整理&#12290;   テーブルAとテーブルBを結合した結果を取得したい場合に&#12289;普通にSpring DataのRepositoryを作って @Query  のメソッドを定義してもうまくいかない&#12290;  例えば以下のようなクエリは表現できない&#12290;   select  ...</div>
+</div>
+<div style='clear: both;'></div>
+</li>
+<li>
+<div class='item-content'>
+<div class='item-title'><a href='https://ksoichiro.blogspot.com/2015/03/spring-boot.html'>Spring Bootでユーザ認証</a></div>
+<div class='item-snippet'>Spring Bootで(というかSpring Securityのような気もするが)  ユーザ認証を実装する方法について&#12290;  とりあえずハードコードで&#12289;という方法は見つかるのだが    DBにユーザ情報を格納し  ID以外のユーザ情報にもアクセスできるようにする    という場合...</div>
+</div>
+<div style='clear: both;'></div>
+</li>
+<li>
+<div class='item-content'>
+<div class='item-thumbnail'>
+<a href='https://ksoichiro.blogspot.com/2014/05/androidgradle-jacoco.html' rel='noopener' target='_blank'>
+<img alt='' border='0' src='//4.bp.blogspot.com/-52QWIKXsFhY/U2d26nrHWyI/AAAAAAAAMug/euh1PvxyauU/w72-h72-p-k-no-nu/%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%BC%E3%83%B3%E3%82%B7%E3%83%A7%E3%83%83%E3%83%88+2014-05-05+20.32.14.png'/>
+</a>
+</div>
+<div class='item-title'><a href='https://ksoichiro.blogspot.com/2014/05/androidgradle-jacoco.html'>[Android][Gradle] ライブラリプロジェクトのJaCoCoでのカバレッジ計測</a></div>
+<div class='item-snippet'>Android Studioがリリースされて以来&#12289;Gradleプラグインをしばらく使っていたものの androidプラグインがjavaプラグインと共存できないせいでいろいろとできないことがあった&#12290;   その一つが&#12289;カバレッジの計測&#12290;  4月末のAndroid Gradle Plu...</div>
+</div>
+<div style='clear: both;'></div>
+</li>
+<li>
+<div class='item-content'>
+<div class='item-title'><a href='https://ksoichiro.blogspot.com/2011/05/android-checkstyle.html'>Android CheckStyle設定</a></div>
+<div class='item-snippet'>AndroidプロジェクトでのCheckStyle設定についてです&#12290;   Android Open Source Projectのコードスタイルでは&#12289;フィールド名はmから開始する&#12289;  などのルールがあります&#12290;  Code Style Guidelines for Contribu...</div>
+</div>
+<div style='clear: both;'></div>
+</li>
+</ul>
+</div>
+</div><div class='widget BlogArchive' data-version='1' id='BlogArchive1'>
+<h2>ブログ アーカイブ</h2>
+<div class='widget-content'>
+<div id='ArchiveList'>
+<div id='BlogArchive1_ArchiveList'>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+
+</span>
+</a>
+<a class='post-count-link' href='https://ksoichiro.blogspot.com/2018/'>
+2018
+</a>
+<span class='post-count' dir='ltr'>(1)</span>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+
+</span>
+</a>
+<a class='post-count-link' href='https://ksoichiro.blogspot.com/2018/12/'>
+12月
+</a>
+<span class='post-count' dir='ltr'>(1)</span>
+</li>
+</ul>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate expanded'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy toggle-open'>
+
+        &#9660;&#160;
+
+</span>
+</a>
+<a class='post-count-link' href='https://ksoichiro.blogspot.com/2017/'>
+2017
+</a>
+<span class='post-count' dir='ltr'>(1)</span>
+<ul class='hierarchy'>
+<li class='archivedate expanded'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy toggle-open'>
+
+        &#9660;&#160;
+
+</span>
+</a>
+<a class='post-count-link' href='https://ksoichiro.blogspot.com/2017/01/'>
+1月
+</a>
+<span class='post-count' dir='ltr'>(1)</span>
+<ul class='posts'>
+<li><a href='https://ksoichiro.blogspot.com/2017/01/constructor-injection.html'>Constructor Injectionに変えてみる</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+
+</span>
+</a>
+<a class='post-count-link' href='https://ksoichiro.blogspot.com/2016/'>
+2016
+</a>
+<span class='post-count' dir='ltr'>(22)</span>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+
+</span>
+</a>
+<a class='post-count-link' href='https://ksoichiro.blogspot.com/2016/12/'>
+12月
+</a>
+<span class='post-count' dir='ltr'>(7)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+
+</span>
+</a>
+<a class='post-count-link' href='https://ksoichiro.blogspot.com/2016/10/'>
+10月
+</a>
+<span class='post-count' dir='ltr'>(8)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+
+</span>
+</a>
+<a class='post-count-link' href='https://ksoichiro.blogspot.com/2016/09/'>
+9月
+</a>
+<span class='post-count' dir='ltr'>(1)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+
+</span>
+</a>
+<a class='post-count-link' href='https://ksoichiro.blogspot.com/2016/08/'>
+8月
+</a>
+<span class='post-count' dir='ltr'>(1)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+
+</span>
+</a>
+<a class='post-count-link' href='https://ksoichiro.blogspot.com/2016/03/'>
+3月
+</a>
+<span class='post-count' dir='ltr'>(3)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+
+</span>
+</a>
+<a class='post-count-link' href='https://ksoichiro.blogspot.com/2016/01/'>
+1月
+</a>
+<span class='post-count' dir='ltr'>(2)</span>
+</li>
+</ul>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+
+</span>
+</a>
+<a class='post-count-link' href='https://ksoichiro.blogspot.com/2015/'>
+2015
+</a>
+<span class='post-count' dir='ltr'>(36)</span>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+
+</span>
+</a>
+<a class='post-count-link' href='https://ksoichiro.blogspot.com/2015/12/'>
+12月
+</a>
+<span class='post-count' dir='ltr'>(8)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+
+</span>
+</a>
+<a class='post-count-link' href='https://ksoichiro.blogspot.com/2015/11/'>
+11月
+</a>
+<span class='post-count' dir='ltr'>(4)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+
+</span>
+</a>
+<a class='post-count-link' href='https://ksoichiro.blogspot.com/2015/10/'>
+10月
+</a>
+<span class='post-count' dir='ltr'>(3)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+
+</span>
+</a>
+<a class='post-count-link' href='https://ksoichiro.blogspot.com/2015/07/'>
+7月
+</a>
+<span class='post-count' dir='ltr'>(1)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+
+</span>
+</a>
+<a class='post-count-link' href='https://ksoichiro.blogspot.com/2015/04/'>
+4月
+</a>
+<span class='post-count' dir='ltr'>(4)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+
+</span>
+</a>
+<a class='post-count-link' href='https://ksoichiro.blogspot.com/2015/03/'>
+3月
+</a>
+<span class='post-count' dir='ltr'>(16)</span>
+</li>
+</ul>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+
+</span>
+</a>
+<a class='post-count-link' href='https://ksoichiro.blogspot.com/2014/'>
+2014
+</a>
+<span class='post-count' dir='ltr'>(21)</span>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+
+</span>
+</a>
+<a class='post-count-link' href='https://ksoichiro.blogspot.com/2014/08/'>
+8月
+</a>
+<span class='post-count' dir='ltr'>(1)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+
+</span>
+</a>
+<a class='post-count-link' href='https://ksoichiro.blogspot.com/2014/05/'>
+5月
+</a>
+<span class='post-count' dir='ltr'>(18)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+
+</span>
+</a>
+<a class='post-count-link' href='https://ksoichiro.blogspot.com/2014/03/'>
+3月
+</a>
+<span class='post-count' dir='ltr'>(1)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+
+</span>
+</a>
+<a class='post-count-link' href='https://ksoichiro.blogspot.com/2014/02/'>
+2月
+</a>
+<span class='post-count' dir='ltr'>(1)</span>
+</li>
+</ul>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+
+</span>
+</a>
+<a class='post-count-link' href='https://ksoichiro.blogspot.com/2013/'>
+2013
+</a>
+<span class='post-count' dir='ltr'>(20)</span>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+
+</span>
+</a>
+<a class='post-count-link' href='https://ksoichiro.blogspot.com/2013/11/'>
+11月
+</a>
+<span class='post-count' dir='ltr'>(1)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+
+</span>
+</a>
+<a class='post-count-link' href='https://ksoichiro.blogspot.com/2013/10/'>
+10月
+</a>
+<span class='post-count' dir='ltr'>(1)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+
+</span>
+</a>
+<a class='post-count-link' href='https://ksoichiro.blogspot.com/2013/09/'>
+9月
+</a>
+<span class='post-count' dir='ltr'>(6)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+
+</span>
+</a>
+<a class='post-count-link' href='https://ksoichiro.blogspot.com/2013/06/'>
+6月
+</a>
+<span class='post-count' dir='ltr'>(1)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+
+</span>
+</a>
+<a class='post-count-link' href='https://ksoichiro.blogspot.com/2013/04/'>
+4月
+</a>
+<span class='post-count' dir='ltr'>(6)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+
+</span>
+</a>
+<a class='post-count-link' href='https://ksoichiro.blogspot.com/2013/02/'>
+2月
+</a>
+<span class='post-count' dir='ltr'>(2)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+
+</span>
+</a>
+<a class='post-count-link' href='https://ksoichiro.blogspot.com/2013/01/'>
+1月
+</a>
+<span class='post-count' dir='ltr'>(3)</span>
+</li>
+</ul>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+
+</span>
+</a>
+<a class='post-count-link' href='https://ksoichiro.blogspot.com/2012/'>
+2012
+</a>
+<span class='post-count' dir='ltr'>(13)</span>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+
+</span>
+</a>
+<a class='post-count-link' href='https://ksoichiro.blogspot.com/2012/11/'>
+11月
+</a>
+<span class='post-count' dir='ltr'>(1)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+
+</span>
+</a>
+<a class='post-count-link' href='https://ksoichiro.blogspot.com/2012/10/'>
+10月
+</a>
+<span class='post-count' dir='ltr'>(5)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+
+</span>
+</a>
+<a class='post-count-link' href='https://ksoichiro.blogspot.com/2012/09/'>
+9月
+</a>
+<span class='post-count' dir='ltr'>(1)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+
+</span>
+</a>
+<a class='post-count-link' href='https://ksoichiro.blogspot.com/2012/08/'>
+8月
+</a>
+<span class='post-count' dir='ltr'>(2)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+
+</span>
+</a>
+<a class='post-count-link' href='https://ksoichiro.blogspot.com/2012/06/'>
+6月
+</a>
+<span class='post-count' dir='ltr'>(1)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+
+</span>
+</a>
+<a class='post-count-link' href='https://ksoichiro.blogspot.com/2012/03/'>
+3月
+</a>
+<span class='post-count' dir='ltr'>(1)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+
+</span>
+</a>
+<a class='post-count-link' href='https://ksoichiro.blogspot.com/2012/01/'>
+1月
+</a>
+<span class='post-count' dir='ltr'>(2)</span>
+</li>
+</ul>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+
+</span>
+</a>
+<a class='post-count-link' href='https://ksoichiro.blogspot.com/2011/'>
+2011
+</a>
+<span class='post-count' dir='ltr'>(22)</span>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+
+</span>
+</a>
+<a class='post-count-link' href='https://ksoichiro.blogspot.com/2011/09/'>
+9月
+</a>
+<span class='post-count' dir='ltr'>(1)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+
+</span>
+</a>
+<a class='post-count-link' href='https://ksoichiro.blogspot.com/2011/08/'>
+8月
+</a>
+<span class='post-count' dir='ltr'>(3)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+
+</span>
+</a>
+<a class='post-count-link' href='https://ksoichiro.blogspot.com/2011/06/'>
+6月
+</a>
+<span class='post-count' dir='ltr'>(2)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+
+</span>
+</a>
+<a class='post-count-link' href='https://ksoichiro.blogspot.com/2011/05/'>
+5月
+</a>
+<span class='post-count' dir='ltr'>(10)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+
+</span>
+</a>
+<a class='post-count-link' href='https://ksoichiro.blogspot.com/2011/03/'>
+3月
+</a>
+<span class='post-count' dir='ltr'>(3)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+
+</span>
+</a>
+<a class='post-count-link' href='https://ksoichiro.blogspot.com/2011/02/'>
+2月
+</a>
+<span class='post-count' dir='ltr'>(3)</span>
+</li>
+</ul>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+
+</span>
+</a>
+<a class='post-count-link' href='https://ksoichiro.blogspot.com/2010/'>
+2010
+</a>
+<span class='post-count' dir='ltr'>(16)</span>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+
+</span>
+</a>
+<a class='post-count-link' href='https://ksoichiro.blogspot.com/2010/06/'>
+6月
+</a>
+<span class='post-count' dir='ltr'>(2)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+
+</span>
+</a>
+<a class='post-count-link' href='https://ksoichiro.blogspot.com/2010/05/'>
+5月
+</a>
+<span class='post-count' dir='ltr'>(14)</span>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div><div class='widget Label' data-version='1' id='Label1'>
+<h2>ラベル</h2>
+<div class='widget-content cloud-label-widget-content'>
+<span class='label-size label-size-5'>
+<a dir='ltr' href='https://ksoichiro.blogspot.com/search/label/Android'>Android</a>
+<span class='label-count' dir='ltr'>(64)</span>
+</span>
+<span class='label-size label-size-4'>
+<a dir='ltr' href='https://ksoichiro.blogspot.com/search/label/Spring%20Boot'>Spring Boot</a>
+<span class='label-count' dir='ltr'>(26)</span>
+</span>
+<span class='label-size label-size-4'>
+<a dir='ltr' href='https://ksoichiro.blogspot.com/search/label/Gradle'>Gradle</a>
+<span class='label-count' dir='ltr'>(22)</span>
+</span>
+<span class='label-size label-size-4'>
+<a dir='ltr' href='https://ksoichiro.blogspot.com/search/label/UI'>UI</a>
+<span class='label-count' dir='ltr'>(16)</span>
+</span>
+<span class='label-size label-size-3'>
+<a dir='ltr' href='https://ksoichiro.blogspot.com/search/label/eclipse'>eclipse</a>
+<span class='label-count' dir='ltr'>(13)</span>
+</span>
+<span class='label-size label-size-3'>
+<a dir='ltr' href='https://ksoichiro.blogspot.com/search/label/iOS'>iOS</a>
+<span class='label-count' dir='ltr'>(12)</span>
+</span>
+<span class='label-size label-size-3'>
+<a dir='ltr' href='https://ksoichiro.blogspot.com/search/label/Java'>Java</a>
+<span class='label-count' dir='ltr'>(8)</span>
+</span>
+<span class='label-size label-size-3'>
+<a dir='ltr' href='https://ksoichiro.blogspot.com/search/label/Spring%20Framework'>Spring Framework</a>
+<span class='label-count' dir='ltr'>(7)</span>
+</span>
+<span class='label-size label-size-3'>
+<a dir='ltr' href='https://ksoichiro.blogspot.com/search/label/%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB'>インストール</a>
+<span class='label-count' dir='ltr'>(7)</span>
+</span>
+<span class='label-size label-size-3'>
+<a dir='ltr' href='https://ksoichiro.blogspot.com/search/label/Play%20Framework'>Play Framework</a>
+<span class='label-count' dir='ltr'>(6)</span>
+</span>
+<span class='label-size label-size-3'>
+<a dir='ltr' href='https://ksoichiro.blogspot.com/search/label/Docker'>Docker</a>
+<span class='label-count' dir='ltr'>(5)</span>
+</span>
+<span class='label-size label-size-3'>
+<a dir='ltr' href='https://ksoichiro.blogspot.com/search/label/GitHub'>GitHub</a>
+<span class='label-count' dir='ltr'>(5)</span>
+</span>
+<span class='label-size label-size-3'>
+<a dir='ltr' href='https://ksoichiro.blogspot.com/search/label/Travis%20CI'>Travis CI</a>
+<span class='label-count' dir='ltr'>(5)</span>
+</span>
+<span class='label-size label-size-2'>
+<a dir='ltr' href='https://ksoichiro.blogspot.com/search/label/AndroidFormEnhancer'>AndroidFormEnhancer</a>
+<span class='label-count' dir='ltr'>(4)</span>
+</span>
+<span class='label-size label-size-2'>
+<a dir='ltr' href='https://ksoichiro.blogspot.com/search/label/Blogger'>Blogger</a>
+<span class='label-count' dir='ltr'>(4)</span>
+</span>
+<span class='label-size label-size-2'>
+<a dir='ltr' href='https://ksoichiro.blogspot.com/search/label/Elasticsearch'>Elasticsearch</a>
+<span class='label-count' dir='ltr'>(4)</span>
+</span>
+<span class='label-size label-size-2'>
+<a dir='ltr' href='https://ksoichiro.blogspot.com/search/label/JavaFX'>JavaFX</a>
+<span class='label-count' dir='ltr'>(4)</span>
+</span>
+<span class='label-size label-size-2'>
+<a dir='ltr' href='https://ksoichiro.blogspot.com/search/label/StackEdit'>StackEdit</a>
+<span class='label-count' dir='ltr'>(4)</span>
+</span>
+<span class='label-size label-size-2'>
+<a dir='ltr' href='https://ksoichiro.blogspot.com/search/label/Thymeleaf'>Thymeleaf</a>
+<span class='label-count' dir='ltr'>(4)</span>
+</span>
+<span class='label-size label-size-2'>
+<a dir='ltr' href='https://ksoichiro.blogspot.com/search/label/iPhone'>iPhone</a>
+<span class='label-count' dir='ltr'>(4)</span>
+</span>
+<span class='label-size label-size-2'>
+<a dir='ltr' href='https://ksoichiro.blogspot.com/search/label/%E8%87%AA%E4%BD%9C%E3%82%A2%E3%83%97%E3%83%AA'>自作アプリ</a>
+<span class='label-count' dir='ltr'>(4)</span>
+</span>
+<span class='label-size label-size-2'>
+<a dir='ltr' href='https://ksoichiro.blogspot.com/search/label/Git'>Git</a>
+<span class='label-count' dir='ltr'>(3)</span>
+</span>
+<span class='label-size label-size-2'>
+<a dir='ltr' href='https://ksoichiro.blogspot.com/search/label/Groovy'>Groovy</a>
+<span class='label-count' dir='ltr'>(3)</span>
+</span>
+<span class='label-size label-size-2'>
+<a dir='ltr' href='https://ksoichiro.blogspot.com/search/label/Heroku'>Heroku</a>
+<span class='label-count' dir='ltr'>(3)</span>
+</span>
+<span class='label-size label-size-2'>
+<a dir='ltr' href='https://ksoichiro.blogspot.com/search/label/JaCoCo'>JaCoCo</a>
+<span class='label-count' dir='ltr'>(3)</span>
+</span>
+<span class='label-size label-size-2'>
+<a dir='ltr' href='https://ksoichiro.blogspot.com/search/label/SBT'>SBT</a>
+<span class='label-count' dir='ltr'>(3)</span>
+</span>
+<span class='label-size label-size-2'>
+<a dir='ltr' href='https://ksoichiro.blogspot.com/search/label/Xcode'>Xcode</a>
+<span class='label-count' dir='ltr'>(3)</span>
+</span>
+<span class='label-size label-size-2'>
+<a dir='ltr' href='https://ksoichiro.blogspot.com/search/label/gulp'>gulp</a>
+<span class='label-count' dir='ltr'>(3)</span>
+</span>
+<span class='label-size label-size-2'>
+<a dir='ltr' href='https://ksoichiro.blogspot.com/search/label/%E3%82%B5%E3%83%B3%E3%83%97%E3%83%AB'>サンプル</a>
+<span class='label-count' dir='ltr'>(3)</span>
+</span>
+<span class='label-size label-size-2'>
+<a dir='ltr' href='https://ksoichiro.blogspot.com/search/label/%E3%83%A9%E3%82%A4%E3%83%96%E3%83%A9%E3%83%AA'>ライブラリ</a>
+<span class='label-count' dir='ltr'>(3)</span>
+</span>
+<span class='label-size label-size-2'>
+<a dir='ltr' href='https://ksoichiro.blogspot.com/search/label/%E9%9D%99%E7%9A%84%E8%A7%A3%E6%9E%90'>静的解析</a>
+<span class='label-count' dir='ltr'>(3)</span>
+</span>
+<span class='label-size label-size-2'>
+<a dir='ltr' href='https://ksoichiro.blogspot.com/search/label/AOP'>AOP</a>
+<span class='label-count' dir='ltr'>(2)</span>
+</span>
+<span class='label-size label-size-2'>
+<a dir='ltr' href='https://ksoichiro.blogspot.com/search/label/Android%20Studio'>Android Studio</a>
+<span class='label-count' dir='ltr'>(2)</span>
+</span>
+<span class='label-size label-size-2'>
+<a dir='ltr' href='https://ksoichiro.blogspot.com/search/label/Bower'>Bower</a>
+<span class='label-count' dir='ltr'>(2)</span>
+</span>
+<span class='label-size label-size-2'>
+<a dir='ltr' href='https://ksoichiro.blogspot.com/search/label/CoffeeScript'>CoffeeScript</a>
+<span class='label-count' dir='ltr'>(2)</span>
+</span>
+<span class='label-size label-size-2'>
+<a dir='ltr' href='https://ksoichiro.blogspot.com/search/label/Dockerfile'>Dockerfile</a>
+<span class='label-count' dir='ltr'>(2)</span>
+</span>
+<span class='label-size label-size-2'>
+<a dir='ltr' href='https://ksoichiro.blogspot.com/search/label/EverForm'>EverForm</a>
+<span class='label-count' dir='ltr'>(2)</span>
+</span>
+<span class='label-size label-size-2'>
+<a dir='ltr' href='https://ksoichiro.blogspot.com/search/label/GitLab'>GitLab</a>
+<span class='label-count' dir='ltr'>(2)</span>
+</span>
+<span class='label-size label-size-2'>
+<a dir='ltr' href='https://ksoichiro.blogspot.com/search/label/Google'>Google</a>
+<span class='label-count' dir='ltr'>(2)</span>
+</span>
+<span class='label-size label-size-2'>
+<a dir='ltr' href='https://ksoichiro.blogspot.com/search/label/IntelliJ'>IntelliJ</a>
+<span class='label-count' dir='ltr'>(2)</span>
+</span>
+<span class='label-size label-size-2'>
+<a dir='ltr' href='https://ksoichiro.blogspot.com/search/label/IntelliJ%20IDEA'>IntelliJ IDEA</a>
+<span class='label-count' dir='ltr'>(2)</span>
+</span>
+<span class='label-size label-size-2'>
+<a dir='ltr' href='https://ksoichiro.blogspot.com/search/label/JDK'>JDK</a>
+<span class='label-count' dir='ltr'>(2)</span>
+</span>
+<span class='label-size label-size-2'>
+<a dir='ltr' href='https://ksoichiro.blogspot.com/search/label/JPA'>JPA</a>
+<span class='label-count' dir='ltr'>(2)</span>
+</span>
+<span class='label-size label-size-2'>
+<a dir='ltr' href='https://ksoichiro.blogspot.com/search/label/Mac'>Mac</a>
+<span class='label-count' dir='ltr'>(2)</span>
+</span>
+<span class='label-size label-size-2'>
+<a dir='ltr' href='https://ksoichiro.blogspot.com/search/label/MariaDB'>MariaDB</a>
+<span class='label-count' dir='ltr'>(2)</span>
+</span>
+<span class='label-size label-size-2'>
+<a dir='ltr' href='https://ksoichiro.blogspot.com/search/label/MySQL'>MySQL</a>
+<span class='label-count' dir='ltr'>(2)</span>
+</span>
+<span class='label-size label-size-2'>
+<a dir='ltr' href='https://ksoichiro.blogspot.com/search/label/OCLint'>OCLint</a>
+<span class='label-count' dir='ltr'>(2)</span>
+</span>
+<span class='label-size label-size-2'>
+<a dir='ltr' href='https://ksoichiro.blogspot.com/search/label/Preference'>Preference</a>
+<span class='label-count' dir='ltr'>(2)</span>
+</span>
+<span class='label-size label-size-2'>
+<a dir='ltr' href='https://ksoichiro.blogspot.com/search/label/Ruby%20on%20Rails'>Ruby on Rails</a>
+<span class='label-count' dir='ltr'>(2)</span>
+</span>
+<span class='label-size label-size-2'>
+<a dir='ltr' href='https://ksoichiro.blogspot.com/search/label/Scala'>Scala</a>
+<span class='label-count' dir='ltr'>(2)</span>
+</span>
+<span class='label-size label-size-2'>
+<a dir='ltr' href='https://ksoichiro.blogspot.com/search/label/Spock'>Spock</a>
+<span class='label-count' dir='ltr'>(2)</span>
+</span>
+<span class='label-size label-size-2'>
+<a dir='ltr' href='https://ksoichiro.blogspot.com/search/label/Spock%20Framework'>Spock Framework</a>
+<span class='label-count' dir='ltr'>(2)</span>
+</span>
+<span class='label-size label-size-2'>
+<a dir='ltr' href='https://ksoichiro.blogspot.com/search/label/Spring%20Security'>Spring Security</a>
+<span class='label-count' dir='ltr'>(2)</span>
+</span>
+<span class='label-size label-size-2'>
+<a dir='ltr' href='https://ksoichiro.blogspot.com/search/label/Ubuntu'>Ubuntu</a>
+<span class='label-count' dir='ltr'>(2)</span>
+</span>
+<span class='label-size label-size-2'>
+<a dir='ltr' href='https://ksoichiro.blogspot.com/search/label/Vagrant'>Vagrant</a>
+<span class='label-count' dir='ltr'>(2)</span>
+</span>
+<span class='label-size label-size-2'>
+<a dir='ltr' href='https://ksoichiro.blogspot.com/search/label/iPad'>iPad</a>
+<span class='label-count' dir='ltr'>(2)</span>
+</span>
+<span class='label-size label-size-2'>
+<a dir='ltr' href='https://ksoichiro.blogspot.com/search/label/keystore'>keystore</a>
+<span class='label-count' dir='ltr'>(2)</span>
+</span>
+<span class='label-size label-size-2'>
+<a dir='ltr' href='https://ksoichiro.blogspot.com/search/label/npm'>npm</a>
+<span class='label-count' dir='ltr'>(2)</span>
+</span>
+<span class='label-size label-size-2'>
+<a dir='ltr' href='https://ksoichiro.blogspot.com/search/label/xperia'>xperia</a>
+<span class='label-count' dir='ltr'>(2)</span>
+</span>
+<span class='label-size label-size-2'>
+<a dir='ltr' href='https://ksoichiro.blogspot.com/search/label/%E3%83%95%E3%82%A9%E3%83%BC%E3%83%9E%E3%83%83%E3%82%BF'>フォーマッタ</a>
+<span class='label-count' dir='ltr'>(2)</span>
+</span>
+<span class='label-size label-size-1'>
+<a dir='ltr' href='https://ksoichiro.blogspot.com/search/label/APNs'>APNs</a>
+<span class='label-count' dir='ltr'>(1)</span>
+</span>
+<span class='label-size label-size-1'>
+<a dir='ltr' href='https://ksoichiro.blogspot.com/search/label/ActionBarCompat'>ActionBarCompat</a>
+<span class='label-count' dir='ltr'>(1)</span>
+</span>
+<span class='label-size label-size-1'>
+<a dir='ltr' href='https://ksoichiro.blogspot.com/search/label/AdHoc'>AdHoc</a>
+<span class='label-count' dir='ltr'>(1)</span>
+</span>
+<span class='label-size label-size-1'>
+<a dir='ltr' href='https://ksoichiro.blogspot.com/search/label/Ajax'>Ajax</a>
+<span class='label-count' dir='ltr'>(1)</span>
+</span>
+<span class='label-size label-size-1'>
+<a dir='ltr' href='https://ksoichiro.blogspot.com/search/label/Android%20SDK'>Android SDK</a>
+<span class='label-count' dir='ltr'>(1)</span>
+</span>
+<span class='label-size label-size-1'>
+<a dir='ltr' href='https://ksoichiro.blogspot.com/search/label/AppStore'>AppStore</a>
+<span class='label-count' dir='ltr'>(1)</span>
+</span>
+<span class='label-size label-size-1'>
+<a dir='ltr' href='https://ksoichiro.blogspot.com/search/label/Books'>Books</a>
+<span class='label-count' dir='ltr'>(1)</span>
+</span>
+<span class='label-size label-size-1'>
+<a dir='ltr' href='https://ksoichiro.blogspot.com/search/label/CI'>CI</a>
+<span class='label-count' dir='ltr'>(1)</span>
+</span>
+<span class='label-size label-size-1'>
+<a dir='ltr' href='https://ksoichiro.blogspot.com/search/label/CMake'>CMake</a>
+<span class='label-count' dir='ltr'>(1)</span>
+</span>
+<span class='label-size label-size-1'>
+<a dir='ltr' href='https://ksoichiro.blogspot.com/search/label/CSS'>CSS</a>
+<span class='label-count' dir='ltr'>(1)</span>
+</span>
+<span class='label-size label-size-1'>
+<a dir='ltr' href='https://ksoichiro.blogspot.com/search/label/CWM'>CWM</a>
+<span class='label-count' dir='ltr'>(1)</span>
+</span>
+<span class='label-size label-size-1'>
+<a dir='ltr' href='https://ksoichiro.blogspot.com/search/label/CheckStyle'>CheckStyle</a>
+<span class='label-count' dir='ltr'>(1)</span>
+</span>
+<span class='label-size label-size-1'>
+<a dir='ltr' href='https://ksoichiro.blogspot.com/search/label/Chrome%20Extension'>Chrome Extension</a>
+<span class='label-count' dir='ltr'>(1)</span>
+</span>
+<span class='label-size label-size-1'>
+<a dir='ltr' href='https://ksoichiro.blogspot.com/search/label/Default.png'>Default.png</a>
+<span class='label-count' dir='ltr'>(1)</span>
+</span>
+<span class='label-size label-size-1'>
+<a dir='ltr' href='https://ksoichiro.blogspot.com/search/label/Evernote'>Evernote</a>
+<span class='label-count' dir='ltr'>(1)</span>
+</span>
+<span class='label-size label-size-1'>
+<a dir='ltr' href='https://ksoichiro.blogspot.com/search/label/Express'>Express</a>
+<span class='label-count' dir='ltr'>(1)</span>
+</span>
+<span class='label-size label-size-1'>
+<a dir='ltr' href='https://ksoichiro.blogspot.com/search/label/Fragment'>Fragment</a>
+<span class='label-count' dir='ltr'>(1)</span>
+</span>
+<span class='label-size label-size-1'>
+<a dir='ltr' href='https://ksoichiro.blogspot.com/search/label/Galaxy%20Nexus'>Galaxy Nexus</a>
+<span class='label-count' dir='ltr'>(1)</span>
+</span>
+<span class='label-size label-size-1'>
+<a dir='ltr' href='https://ksoichiro.blogspot.com/search/label/Google%20Maps'>Google Maps</a>
+<span class='label-count' dir='ltr'>(1)</span>
+</span>
+<span class='label-size label-size-1'>
+<a dir='ltr' href='https://ksoichiro.blogspot.com/search/label/H2'>H2</a>
+<span class='label-count' dir='ltr'>(1)</span>
+</span>
+<span class='label-size label-size-1'>
+<a dir='ltr' href='https://ksoichiro.blogspot.com/search/label/IDE'>IDE</a>
+<span class='label-count' dir='ltr'>(1)</span>
+</span>
+<span class='label-size label-size-1'>
+<a dir='ltr' href='https://ksoichiro.blogspot.com/search/label/Inkscape'>Inkscape</a>
+<span class='label-count' dir='ltr'>(1)</span>
+</span>
+<span class='label-size label-size-1'>
+<a dir='ltr' href='https://ksoichiro.blogspot.com/search/label/Intent'>Intent</a>
+<span class='label-count' dir='ltr'>(1)</span>
+</span>
+<span class='label-size label-size-1'>
+<a dir='ltr' href='https://ksoichiro.blogspot.com/search/label/JSP'>JSP</a>
+<span class='label-count' dir='ltr'>(1)</span>
+</span>
+<span class='label-size label-size-1'>
+<a dir='ltr' href='https://ksoichiro.blogspot.com/search/label/JUnit'>JUnit</a>
+<span class='label-count' dir='ltr'>(1)</span>
+</span>
+<span class='label-size label-size-1'>
+<a dir='ltr' href='https://ksoichiro.blogspot.com/search/label/JavaScript'>JavaScript</a>
+<span class='label-count' dir='ltr'>(1)</span>
+</span>
+<span class='label-size label-size-1'>
+<a dir='ltr' href='https://ksoichiro.blogspot.com/search/label/Jekyll'>Jekyll</a>
+<span class='label-count' dir='ltr'>(1)</span>
+</span>
+<span class='label-size label-size-1'>
+<a dir='ltr' href='https://ksoichiro.blogspot.com/search/label/Jenkins'>Jenkins</a>
+<span class='label-count' dir='ltr'>(1)</span>
+</span>
+<span class='label-size label-size-1'>
+<a dir='ltr' href='https://ksoichiro.blogspot.com/search/label/LESS'>LESS</a>
+<span class='label-count' dir='ltr'>(1)</span>
+</span>
+<span class='label-size label-size-1'>
+<a dir='ltr' href='https://ksoichiro.blogspot.com/search/label/LinkMovementMethod'>LinkMovementMethod</a>
+<span class='label-count' dir='ltr'>(1)</span>
+</span>
+<span class='label-size label-size-1'>
+<a dir='ltr' href='https://ksoichiro.blogspot.com/search/label/Linux'>Linux</a>
+<span class='label-count' dir='ltr'>(1)</span>
+</span>
+<span class='label-size label-size-1'>
+<a dir='ltr' href='https://ksoichiro.blogspot.com/search/label/ListView'>ListView</a>
+<span class='label-count' dir='ltr'>(1)</span>
+</span>
+<span class='label-size label-size-1'>
+<a dir='ltr' href='https://ksoichiro.blogspot.com/search/label/MongoDB'>MongoDB</a>
+<span class='label-count' dir='ltr'>(1)</span>
+</span>
+<span class='label-size label-size-1'>
+<a dir='ltr' href='https://ksoichiro.blogspot.com/search/label/MongoHQ'>MongoHQ</a>
+<span class='label-count' dir='ltr'>(1)</span>
+</span>
+<span class='label-size label-size-1'>
+<a dir='ltr' href='https://ksoichiro.blogspot.com/search/label/Mongoose'>Mongoose</a>
+<span class='label-count' dir='ltr'>(1)</span>
+</span>
+<span class='label-size label-size-1'>
+<a dir='ltr' href='https://ksoichiro.blogspot.com/search/label/NSLocalizedString'>NSLocalizedString</a>
+<span class='label-count' dir='ltr'>(1)</span>
+</span>
+<span class='label-size label-size-1'>
+<a dir='ltr' href='https://ksoichiro.blogspot.com/search/label/Nexus5'>Nexus5</a>
+<span class='label-count' dir='ltr'>(1)</span>
+</span>
+<span class='label-size label-size-1'>
+<a dir='ltr' href='https://ksoichiro.blogspot.com/search/label/Node.js'>Node.js</a>
+<span class='label-count' dir='ltr'>(1)</span>
+</span>
+<span class='label-size label-size-1'>
+<a dir='ltr' href='https://ksoichiro.blogspot.com/search/label/Objective-C'>Objective-C</a>
+<span class='label-count' dir='ltr'>(1)</span>
+</span>
+<span class='label-size label-size-1'>
+<a dir='ltr' href='https://ksoichiro.blogspot.com/search/label/PageSpeed%20Insights'>PageSpeed Insights</a>
+<span class='label-count' dir='ltr'>(1)</span>
+</span>
+<span class='label-size label-size-1'>
+<a dir='ltr' href='https://ksoichiro.blogspot.com/search/label/Querydsl'>Querydsl</a>
+<span class='label-count' dir='ltr'>(1)</span>
+</span>
+<span class='label-size label-size-1'>
+<a dir='ltr' href='https://ksoichiro.blogspot.com/search/label/SAStruts'>SAStruts</a>
+<span class='label-count' dir='ltr'>(1)</span>
+</span>
+<span class='label-size label-size-1'>
+<a dir='ltr' href='https://ksoichiro.blogspot.com/search/label/SimpleAlertDialog'>SimpleAlertDialog</a>
+<span class='label-count' dir='ltr'>(1)</span>
+</span>
+<span class='label-size label-size-1'>
+<a dir='ltr' href='https://ksoichiro.blogspot.com/search/label/SonyTablet'>SonyTablet</a>
+<span class='label-count' dir='ltr'>(1)</span>
+</span>
+<span class='label-size label-size-1'>
+<a dir='ltr' href='https://ksoichiro.blogspot.com/search/label/SourceTree'>SourceTree</a>
+<span class='label-count' dir='ltr'>(1)</span>
+</span>
+<span class='label-size label-size-1'>
+<a dir='ltr' href='https://ksoichiro.blogspot.com/search/label/Storyboard'>Storyboard</a>
+<span class='label-count' dir='ltr'>(1)</span>
+</span>
+<span class='label-size label-size-1'>
+<a dir='ltr' href='https://ksoichiro.blogspot.com/search/label/Subversion'>Subversion</a>
+<span class='label-count' dir='ltr'>(1)</span>
+</span>
+<span class='label-size label-size-1'>
+<a dir='ltr' href='https://ksoichiro.blogspot.com/search/label/TextView'>TextView</a>
+<span class='label-count' dir='ltr'>(1)</span>
+</span>
+<span class='label-size label-size-1'>
+<a dir='ltr' href='https://ksoichiro.blogspot.com/search/label/UIScrollView'>UIScrollView</a>
+<span class='label-count' dir='ltr'>(1)</span>
+</span>
+<span class='label-size label-size-1'>
+<a dir='ltr' href='https://ksoichiro.blogspot.com/search/label/URLSpan'>URLSpan</a>
+<span class='label-count' dir='ltr'>(1)</span>
+</span>
+<span class='label-size label-size-1'>
+<a dir='ltr' href='https://ksoichiro.blogspot.com/search/label/VIM'>VIM</a>
+<span class='label-count' dir='ltr'>(1)</span>
+</span>
+<span class='label-size label-size-1'>
+<a dir='ltr' href='https://ksoichiro.blogspot.com/search/label/VMware%20Player'>VMware Player</a>
+<span class='label-count' dir='ltr'>(1)</span>
+</span>
+<span class='label-size label-size-1'>
+<a dir='ltr' href='https://ksoichiro.blogspot.com/search/label/ViewPager'>ViewPager</a>
+<span class='label-count' dir='ltr'>(1)</span>
+</span>
+<span class='label-size label-size-1'>
+<a dir='ltr' href='https://ksoichiro.blogspot.com/search/label/adb'>adb</a>
+<span class='label-count' dir='ltr'>(1)</span>
+</span>
+<span class='label-size label-size-1'>
+<a dir='ltr' href='https://ksoichiro.blogspot.com/search/label/boot2docker'>boot2docker</a>
+<span class='label-count' dir='ltr'>(1)</span>
+</span>
+<span class='label-size label-size-1'>
+<a dir='ltr' href='https://ksoichiro.blogspot.com/search/label/fint'>fint</a>
+<span class='label-count' dir='ltr'>(1)</span>
+</span>
+<span class='label-size label-size-1'>
+<a dir='ltr' href='https://ksoichiro.blogspot.com/search/label/jQuery'>jQuery</a>
+<span class='label-count' dir='ltr'>(1)</span>
+</span>
+<span class='label-size label-size-1'>
+<a dir='ltr' href='https://ksoichiro.blogspot.com/search/label/root'>root</a>
+<span class='label-count' dir='ltr'>(1)</span>
+</span>
+<span class='label-size label-size-1'>
+<a dir='ltr' href='https://ksoichiro.blogspot.com/search/label/sdkman'>sdkman</a>
+<span class='label-count' dir='ltr'>(1)</span>
+</span>
+<span class='label-size label-size-1'>
+<a dir='ltr' href='https://ksoichiro.blogspot.com/search/label/wercker'>wercker</a>
+<span class='label-count' dir='ltr'>(1)</span>
+</span>
+<span class='label-size label-size-1'>
+<a dir='ltr' href='https://ksoichiro.blogspot.com/search/label/wro4j'>wro4j</a>
+<span class='label-count' dir='ltr'>(1)</span>
+</span>
+<span class='label-size label-size-1'>
+<a dir='ltr' href='https://ksoichiro.blogspot.com/search/label/xctool'>xctool</a>
+<span class='label-count' dir='ltr'>(1)</span>
+</span>
+<span class='label-size label-size-1'>
+<a dir='ltr' href='https://ksoichiro.blogspot.com/search/label/%E3%83%93%E3%83%AB%E3%83%89'>ビルド</a>
+<span class='label-count' dir='ltr'>(1)</span>
+</span>
+<span class='label-size label-size-1'>
+<a dir='ltr' href='https://ksoichiro.blogspot.com/search/label/%E3%83%97%E3%83%AD%E3%83%93%E3%82%B8%E3%83%A7%E3%83%8B%E3%83%B3%E3%82%B0%E3%83%97%E3%83%AD%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB'>プロビジョニングプロファイル</a>
+<span class='label-count' dir='ltr'>(1)</span>
+</span>
+<span class='label-size label-size-1'>
+<a dir='ltr' href='https://ksoichiro.blogspot.com/search/label/%E3%83%AD%E3%83%BC%E3%82%AB%E3%83%A9%E3%82%A4%E3%82%BA'>ローカライズ</a>
+<span class='label-count' dir='ltr'>(1)</span>
+</span>
+<span class='label-size label-size-1'>
+<a dir='ltr' href='https://ksoichiro.blogspot.com/search/label/%E5%80%8B%E4%BA%BA%E9%96%8B%E7%99%BA'>個人開発</a>
+<span class='label-count' dir='ltr'>(1)</span>
+</span>
+<span class='label-size label-size-1'>
+<a dir='ltr' href='https://ksoichiro.blogspot.com/search/label/%E8%B5%B7%E5%8B%95%E7%94%BB%E9%9D%A2'>起動画面</a>
+<span class='label-count' dir='ltr'>(1)</span>
+</span>
+</div>
+</div></div>
+</aside>
+</div>
+</div>
+</div>
+<div style='clear: both'></div>
+<!-- columns -->
+</div>
+<!-- main -->
+</div>
+</div>
+<div class='main-cap-bottom cap-bottom'>
+<div class='cap-left'></div>
+<div class='cap-right'></div>
+</div>
+</div>
+<footer>
+<div class='footer-outer'>
+<div class='footer-cap-top cap-top'>
+<div class='cap-left'></div>
+<div class='cap-right'></div>
+</div>
+<div class='fauxborder-left footer-fauxborder-left'>
+<div class='fauxborder-right footer-fauxborder-right'></div>
+<div class='region-inner footer-inner'>
+<div class='foot no-items section' id='footer-1'></div>
+<table border='0' cellpadding='0' cellspacing='0' class='section-columns columns-2'>
+<tbody>
+<tr>
+<td class='first columns-cell'>
+<div class='foot no-items section' id='footer-2-1'></div>
+</td>
+<td class='columns-cell'>
+<div class='foot no-items section' id='footer-2-2'></div>
+</td>
+</tr>
+</tbody>
+</table>
+<!-- outside of the include in order to lock Attribution widget -->
+<div class='foot section' id='footer-3'><div class='widget Attribution' data-version='1' id='Attribution1'>
+<div class='widget-content' style='text-align: center;'>
+&#169; 2011 ksoichiro, All rights reserved. Powered by <a href='https://www.blogger.com' target='_blank'>Blogger</a>.
+</div>
+<div class='clear'></div>
+<span class='widget-item-control'>
+<span class='item-control blog-admin'>
+<a class='quickedit' href='//www.blogger.com/rearrange?blogID=7702612945354492373&widgetType=Attribution&widgetId=Attribution1&action=editWidget&sectionId=footer-3' onclick='return _WidgetManager._PopupConfig(document.getElementById("Attribution1"));' rel='nofollow' target='configAttribution1' title='編集'>
+<img alt='' height='18' src='https://resources.blogblog.com/img/icon18_wrench_allbkg.png' width='18'/>
+</a>
+</span>
+</span>
+<div class='clear'></div>
+</div></div>
+</div>
+</div>
+<div class='footer-cap-bottom cap-bottom'>
+<div class='cap-left'></div>
+<div class='cap-right'></div>
+</div>
+</div>
+</footer>
+<!-- content -->
+</div>
+</div>
+<div class='content-cap-bottom cap-bottom'>
+<div class='cap-left'></div>
+<div class='cap-right'></div>
+</div>
+</div>
+</div>
+<script type='text/javascript'>
+    window.setTimeout(function() {
+        document.body.className = document.body.className.replace('loading', '');
+      }, 10);
+  </script>
+<!-- No Swipe Mobile -->
+<!-- /END -->
+<a href='#' id='backtotop' rel='nofollow' title='Back to Top'>&#8593;</a>
+<script src='//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
+<script src='//ksoichiro.github.io/memorandum/memorandum.min.js' type='text/javascript'></script>
+<script type='text/javascript'>
+  $('#Attribution1 a[target="_blank"]').attr('rel', 'noopener');
+</script>
+<!--<script src='https://apis.google.com/js/plusone.js' type='text/javascript'></script>
+
+<script type="text/javascript" src="https://www.blogger.com/static/v1/widgets/866654127-widgets.js"></script>
+<script type='text/javascript'>
+window['__wavt'] = 'AOuZoY4_6rqZ9GwNY8154ykNB2Sya28hVQ:1545645965081';_WidgetManager._Init('//www.blogger.com/rearrange?blogID\x3d7702612945354492373','//ksoichiro.blogspot.com/2017/01/constructor-injection.html','7702612945354492373');
+_WidgetManager._SetDataContext([{'name': 'blog', 'data': {'blogId': '7702612945354492373', 'title': 'memorandum', 'url': 'https://ksoichiro.blogspot.com/2017/01/constructor-injection.html', 'canonicalUrl': 'https://ksoichiro.blogspot.com/2017/01/constructor-injection.html', 'homepageUrl': 'https://ksoichiro.blogspot.com/', 'searchUrl': 'https://ksoichiro.blogspot.com/search', 'canonicalHomepageUrl': 'https://ksoichiro.blogspot.com/', 'blogspotFaviconUrl': 'https://ksoichiro.blogspot.com/favicon.ico', 'bloggerUrl': 'https://www.blogger.com', 'hasCustomDomain': false, 'httpsEnabled': true, 'enabledCommentProfileImages': true, 'gPlusViewType': 'FILTERED_POSTMOD', 'adultContent': false, 'analyticsAccountNumber': '', 'encoding': 'UTF-8', 'locale': 'ja', 'localeUnderscoreDelimited': 'ja', 'languageDirection': 'ltr', 'isPrivate': false, 'isMobile': false, 'isMobileRequest': false, 'mobileClass': '', 'isPrivateBlog': false, 'feedLinks': '\x3clink rel\x3d\x22alternate\x22 type\x3d\x22application/atom+xml\x22 title\x3d\x22memorandum - Atom\x22 href\x3d\x22https://ksoichiro.blogspot.com/feeds/posts/default\x22 /\x3e\n\x3clink rel\x3d\x22alternate\x22 type\x3d\x22application/rss+xml\x22 title\x3d\x22memorandum - RSS\x22 href\x3d\x22https://ksoichiro.blogspot.com/feeds/posts/default?alt\x3drss\x22 /\x3e\n\x3clink rel\x3d\x22service.post\x22 type\x3d\x22application/atom+xml\x22 title\x3d\x22memorandum - Atom\x22 href\x3d\x22https://www.blogger.com/feeds/7702612945354492373/posts/default\x22 /\x3e\n\n\x3clink rel\x3d\x22alternate\x22 type\x3d\x22application/atom+xml\x22 title\x3d\x22memorandum - Atom\x22 href\x3d\x22https://ksoichiro.blogspot.com/feeds/1685647220146011906/comments/default\x22 /\x3e\n', 'meTag': '', 'adsenseClientId': 'ca-pub-1323408760822838', 'adsenseHostId': 'ca-host-pub-1556223355139109', 'adsenseHasAds': true, 'ieCssRetrofitLinks': '\x3c!--[if IE]\x3e\x3cscript type\x3d\x22text/javascript\x22 src\x3d\x22https://www.blogger.com/static/v1/jsbin/864213505-ieretrofit.js\x22\x3e\x3c/script\x3e\n\x3c![endif]--\x3e', 'view': '', 'dynamicViewsCommentsSrc': '//www.blogblog.com/dynamicviews/4224c15c4e7c9321/js/comments.js', 'dynamicViewsScriptSrc': '//www.blogblog.com/dynamicviews/7a0cbfc92c51aced', 'plusOneApiSrc': 'https://apis.google.com/js/plusone.js', 'sharing': {'platforms': [{'name': 'リンクを取得', 'key': 'link', 'shareMessage': 'リンクを取得', 'target': ''}, {'name': 'Facebook', 'key': 'facebook', 'shareMessage': 'Facebook で共有', 'target': 'facebook'}, {'name': 'BlogThis!', 'key': 'blogThis', 'shareMessage': 'BlogThis!', 'target': 'blog'}, {'name': 'Twitter', 'key': 'twitter', 'shareMessage': 'Twitter で共有', 'target': 'twitter'}, {'name': 'Pinterest', 'key': 'pinterest', 'shareMessage': 'Pinterest で共有', 'target': 'pinterest'}, {'name': 'Google+', 'key': 'googlePlus', 'shareMessage': 'Google+ で共有', 'target': 'googleplus'}, {'name': 'メール', 'key': 'email', 'shareMessage': 'メール', 'target': 'email'}], 'googlePlusShareButtonWidth': 300, 'googlePlusBootstrap': '\x3cscript type\x3d\x22text/javascript\x22\x3ewindow.___gcfg \x3d {\x27lang\x27: \x27ja\x27};\x3c/script\x3e'}, 'hasCustomJumpLinkMessage': false, 'jumpLinkMessage': '続きを読む', 'pageType': 'item', 'postId': '1685647220146011906', 'pageName': 'Constructor Injectionに変えてみる', 'pageTitle': 'memorandum: Constructor Injectionに変えてみる', 'metaDescription': ''}}, {'name': 'features', 'data': {'sharing_get_link_dialog': 'true', 'sharing_native': 'false'}}, {'name': 'messages', 'data': {'edit': '編集', 'linkCopiedToClipboard': 'リンクをクリップボードにコピーしました&#12290;', 'ok': 'OK', 'postLink': '投稿のリンク'}}, {'name': 'template', 'data': {'name': 'custom', 'localizedName': 'カスタム', 'isResponsive': false, 'isAlternateRendering': false, 'isCustom': true}}, {'name': 'view', 'data': {'classic': {'name': 'classic', 'url': '?view\x3dclassic'}, 'flipcard': {'name': 'flipcard', 'url': '?view\x3dflipcard'}, 'magazine': {'name': 'magazine', 'url': '?view\x3dmagazine'}, 'mosaic': {'name': 'mosaic', 'url': '?view\x3dmosaic'}, 'sidebar': {'name': 'sidebar', 'url': '?view\x3dsidebar'}, 'snapshot': {'name': 'snapshot', 'url': '?view\x3dsnapshot'}, 'timeslide': {'name': 'timeslide', 'url': '?view\x3dtimeslide'}, 'isMobile': false, 'title': 'Constructor Injectionに変えてみる', 'description': 'Android, iOSのモバイルアプリ開発などを中心としたITに関するメモのブログです&#12290;', 'url': 'https://ksoichiro.blogspot.com/2017/01/constructor-injection.html', 'type': 'item', 'isSingleItem': true, 'isMultipleItems': false, 'isError': false, 'isPage': false, 'isPost': true, 'isHomepage': false, 'isArchive': false, 'isLabelSearch': false, 'postId': 1685647220146011906}}]);
+_WidgetManager._RegisterWidget('_HeaderView', new _WidgetInfo('Header1', 'header', document.getElementById('Header1'), {}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_PageListView', new _WidgetInfo('PageList1', 'crosscol', document.getElementById('PageList1'), {'title': 'ページ', 'links': [{'isCurrentPage': false, 'href': 'https://ksoichiro.blogspot.com/', 'title': 'blog'}, {'isCurrentPage': false, 'href': 'https://ksoichiro.blogspot.com/p/blog-page.html', 'id': '4582010464726914629', 'title': 'apps'}, {'isCurrentPage': false, 'href': 'https://github.com/ksoichiro', 'title': 'github'}], 'mobile': false}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_BlogView', new _WidgetInfo('Blog1', 'main', document.getElementById('Blog1'), {'cmtInteractionsEnabled': false, 'lightboxEnabled': true, 'lightboxModuleUrl': 'https://www.blogger.com/static/v1/jsbin/1751821612-lbx__ja.js', 'lightboxCssUrl': 'https://www.blogger.com/static/v1/v-css/368954415-lightbox_bundle.css'}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_ProfileView', new _WidgetInfo('Profile1', 'sidebar-right-1', document.getElementById('Profile1'), {}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_BlogSearchView', new _WidgetInfo('BlogSearch1', 'sidebar-right-1', document.getElementById('BlogSearch1'), {}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_AdSenseView', new _WidgetInfo('AdSense1', 'sidebar-right-1', document.getElementById('AdSense1'), {}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_PopularPostsView', new _WidgetInfo('PopularPosts2', 'sidebar-right-1', document.getElementById('PopularPosts2'), {}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_BlogArchiveView', new _WidgetInfo('BlogArchive1', 'sidebar-right-1', document.getElementById('BlogArchive1'), {'languageDirection': 'ltr', 'loadingMessage': '読み込み中\x26hellip;'}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_LabelView', new _WidgetInfo('Label1', 'sidebar-right-1', document.getElementById('Label1'), {}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_AttributionView', new _WidgetInfo('Attribution1', 'footer-3', document.getElementById('Attribution1'), {}, 'displayModeFull'));
+</script>
+</body>--> </body>
+
+</html>
