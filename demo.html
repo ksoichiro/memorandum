@@ -264,6 +264,46 @@ OSS として開発している場合には&#12289;Travis など各種の CI サ
 
 <p>では PC 上でテストを流すので我慢しようというのも微妙だなぁと思うので&#12289;OSS の開発と同様に&#12289;Git リポジトリにコードを push するとインターネット上のどこかの環境で CI が実行されるような環境の整備を目指したい&#12290;費用はゼロとは言わないが&#12289;最小限に&#12290;</p>
 
+<p>Lighthouse の Chrome Extension での計測で&#12289;以下のように改善&#12290;</p>
+
+<table>
+<thead>
+<tr>
+  <th>項目</th>
+  <th align="right">変更前</th>
+  <th align="right">変更後</th>
+</tr>
+</thead>
+<tbody><tr>
+  <td>Performance</td>
+  <td align="right">75</td>
+  <td align="right">90</td>
+</tr>
+<tr>
+  <td>Progressive Web App</td>
+  <td align="right">58</td>
+  <td align="right"></td>
+</tr>
+<tr>
+  <td>Accessibility</td>
+  <td align="right">44</td>
+  <td align="right">65</td>
+</tr>
+<tr>
+  <td>Best Practices</td>
+  <td align="right">79</td>
+  <td align="right">93</td>
+</tr>
+<tr>
+  <td>SEO</td>
+  <td align="right">100</td>
+  <td align="right">100</td>
+</tr>
+</tbody></table>
+
+
+<p><a href="https://developers.google.com/speed/pagespeed/insights/">PageSpeed Insights</a> だとモバイルが 91 点&#12289;PC が 100 点に改善した&#12290;</p>
+
 <p>そんなモチベーションのもとで&#12289;個人開発のプライベートリポジトリに対して CI をするにはどんなやり方があるかを検討してみた&#12290;</p>
 
 <div style='clear: both;'></div>

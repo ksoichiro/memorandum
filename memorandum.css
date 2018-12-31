@@ -688,3 +688,22 @@ body.mobile .AdSense {
   filter: alpha(opacity=100);
   -moz-opacity: 1;
 }
+.post-body h2 {
+  color: #222;
+  border-bottom: 3px solid #eee;
+  margin-top: 16px;
+  margin-bottom: 16px;
+}
+.post-body table {
+  background-color: transparent;
+  max-width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0px;
+}
+.post-body th {
+  padding: 8px;
+}
+.post-body td {
+  border-top: 1px solid #ddd;
+  padding: 8px;
+}

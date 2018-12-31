@@ -271,6 +271,23 @@ LombokのProcessorを同時に指定してあげれば解決できるという�
     ]
 }</code></pre>
 
+<h2 id="Header2">Header2</h2>
+
+<p>上記Issueに書かれているものを少し変えて&#12289;以下のような感じでprocessorを複数指定して無事解決&#12290;</p>
+
+<pre class="prettyprint"><code class="language-groovy hljs bash">task generateQuerydsl(<span class="hljs-built_in">type</span>: JavaCompile) {
+    <span class="hljs-built_in">source</span> = <span class="hljs-built_in">source</span>Sets.main.java
+    classpath = configurations.compile + configurations.provided
+    destinationDir = querydslDir
+    options.compilerArgs += [
+        <span class="hljs-string">'-proc:only'</span>,
+        <span class="hljs-string">'-processor'</span>, [
+            <span class="hljs-string">'com.mysema.query.apt.jpa.JPAAnnotationProcessor'</span>,
+            <span class="hljs-string">'lombok.launch.AnnotationProcessorHider$AnnotationProcessor'</span>,
+        ].join(<span class="hljs-string">','</span>)
+    ]
+}</code></pre>
+
 <h3 id="configurationへの対応">Configurationへの対応</h3>
 
 <p><code>@Configuration</code>に対して適用したところBean Creationが失敗&#12290; <br>
