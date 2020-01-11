@@ -504,7 +504,6 @@ body {
   margin: 0 10px 10px;
 }
 h1.title {
-  font-family: Helvetica, Tahoma, Verdana, Courier, sans-serif;
   font-weight: 600;
   font-size: 4em;
 }
@@ -513,7 +512,7 @@ h3,
 h4,
 div.fauxborder-left,
 h3.post-title {
-  font-family: sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Segoe UI", "Yu Gothic", YuGothic, "Hiragino Kaku Gothic ProN", "Hiragino Sans", "ヒラギノ角ゴ ProN W3", Verdana, Meiryo, "M+ 1p", sans-serif;
 }
 h2,
 h3,
@@ -571,7 +570,7 @@ pre,
 pre code,
 p code,
 li code {
-  font-family: Consolas, Menlo, Courier, "Courier New", sans-serif;
+  font-family: Consolas, Menlo, Courier, "Courier New", -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Segoe UI", "Yu Gothic", YuGothic, "Hiragino Kaku Gothic ProN", "Hiragino Sans", "ヒラギノ角ゴ ProN W3", Verdana, Meiryo, "M+ 1p", sans-serif;
 }
 pre,
 blockquote {
