@@ -776,7 +776,8 @@ body.mobile .AdSense {
   .post-body h2,
   h3,
   h3.post-title,
-  h3.mobile-index-title {
+  h3.mobile-index-title,
+  .mobile-date-outer {
     border-bottom-color: #3d425b;
   }
   h3.post-title a:link,
