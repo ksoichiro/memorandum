@@ -184,3 +184,129 @@ html body .region-inner {
   max-width: 100%;
   width: auto;
 }
+
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color:#121212;
+    color: #c6c8d1;
+  }
+  .Header .description {
+    color: #c6c8d1;
+  }
+  .content-inner,
+  .mobile .main-inner,
+  .mobile .footer-inner {
+    background-color:#161821;
+  }
+  .date-header span,
+  .mobile-index-contents {
+    color: #c6c8d1;
+  }
+  .mobile-index-thumbnail img,
+  .post-body img {
+    filter: grayscale(30%);
+  }
+  h2,
+  .post-body h2 {
+    color: #c6c8d1;
+  }
+  .tabs-inner .section:first-child {
+    border-top-color: #3d425b;
+  }
+  .tabs-inner .section:first-child ul {
+    border-top-color: #3d425b;
+    border-left-color: #3d425b;
+    border-right-color: #3d425b;
+  }
+  .tabs-inner .widget ul {
+    border-bottom-color: #3d425b;
+  }
+  .tabs-inner .widget li a {
+    color: #c6c8d1;
+    border-left-color: #3d425b;
+    border-right-color: #3d425b;
+  }
+  .tabs-inner .widget li.selected a,
+  .tabs-inner .widget li a:hover {
+    color: #c6c8d1;
+    background-color: #444b71;
+  }
+  .mobile .tabs-inner .PageList .widget-content {
+    background-color: #3d425b;
+    color: #c6c8d1;
+    border-top-color: #3d425b;
+    border-bottom-color: #3d425b;
+  }
+  .mobile .tabs-inner .PageList .widget-content .pagelist-arrow {
+    border-left-color: #3d425b;
+  }
+  .main-outer,
+  .fauxcolumn-left-outer .fauxcolumn-inner,
+  .fauxcolumn-right-outer .fauxcolumn-inner {
+    border-left-color: #3d425b;
+  }
+  h2,
+  .post-body h2,
+  h3,
+  h3.post-title,
+  h3.mobile-index-title,
+  .mobile-date-outer {
+    border-bottom-color: #3d425b;
+  }
+  h3.post-title a:link,
+  h3.post-title a:active,
+  h3.post-title a:hover,
+  h3.post-title a:visited {
+    color: #90CAF9;
+  }
+  .post-footer {
+    color: #c6c8d1;
+    background-color: transparent;
+    border-bottom-color: transparent;
+  }
+  .mobile .tabs-inner .PageList .widget-content {
+    background-color: transparent;
+    color: #c6c8d1;
+  }
+  .tabs-inner .widget ul {
+    background-color: transparent;
+  }
+  .tabs-inner .section ul {
+    border-top-color: transparent;
+  }
+  .blog-pager-older-link,
+  .home-link,
+  .blog-pager-newer-link {
+    background-color: transparent;
+  }
+  a:link {
+    color: #90CAF9;
+  }
+  a:visited {
+    color: #90CAF9;
+  }
+  a:hover {
+    color: #64B5F6;
+  }
+  p code,
+  li code {
+    background: #272c42;
+  }
+  pre,
+  blockquote {
+    border-left: 8px solid #3d425b;
+    background: #272c42;
+  }
+  p code,
+  li code {
+    background: #272c42;
+  }
+  blockquote pre {
+    border-left: 8px solid #3d425b;
+    background: #272c42;
+  }
+  #backtotop {
+    background: #272c42;
+    color: #c6c8d1;
+  }
+}
