@@ -704,6 +704,9 @@ body.mobile .AdSense {
   border-top: 1px solid #ddd;
   padding: 8px;
 }
+.label-icon {
+  transform: translateY(.13em)
+}
 @media (prefers-color-scheme: dark) {
   body {
     background-color:#121212;
