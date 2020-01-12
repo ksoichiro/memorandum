@@ -1,9 +1,21 @@
 /* Default style from skin */
 /* Content */
 body {
-  font: normal normal 12px Arial, Tahoma, Helvetica, FreeSans, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
   color: #222222;
   padding: 0px;
+  min-width: 960px;
+}
+body,
+h2,
+h3,
+h4,
+div.fauxborder-left,
+h3.post-title {
+  font-family: 'Lato', 'Noto Sans JP', -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Segoe UI", "Yu Gothic", YuGothic, "Hiragino Kaku Gothic ProN", "Hiragino Sans", "ヒラギノ角ゴ ProN W3", Verdana, Meiryo, "M+ 1p", sans-serif;
+  font-display: swap;
 }
 html body .region-inner {
   min-width: 0;
@@ -50,7 +62,9 @@ a:hover {
   _background-image: none;
 }
 .Header h1 {
-  font: normal normal 42px Helvetica, Tahoma, Verdana, Courier, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 42px;
   color: #3399bb;
   /*text-shadow: -1px -1px 1px rgba(0, 0, 0, .2);*/
 }
@@ -89,7 +103,9 @@ a:hover {
 .tabs-inner .widget li a {
   display: inline-block;
   padding: 0.6em 1em;
-  font: normal normal 14px Arial, Tahoma, Helvetica, FreeSans, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
   color: #999999;
   border-left: 1px solid #ffffff;
   border-right: 1px solid #eeeeee;
@@ -116,7 +132,9 @@ a:hover {
 /* Headings */
 h2 {
   margin: 0 0 1em 0;
-  font: normal bold 11px Arial, Tahoma, Helvetica, FreeSans, sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 11px;
   color: #000000;
 }
 /* Widgets */
@@ -150,7 +168,9 @@ h2 {
 }
 h3.post-title,
 .comments h4 {
-  font: normal normal 22px Arial, Tahoma, Helvetica, FreeSans, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 22px;
   margin: 0.75em 0 0;
 }
 .post-body {
@@ -302,9 +322,6 @@ body.mobile .AdSense {
 
 /** template-skin-1 */
 
-body {
-  min-width: 960px;
-}
 .content-outer,
 .content-fauxcolumn-outer,
 .region-inner {
@@ -506,14 +523,6 @@ body {
 h1.title {
   font-weight: 600;
   font-size: 4em;
-}
-h2,
-h3,
-h4,
-div.fauxborder-left,
-h3.post-title {
-  font-family: 'Lato', 'Noto Sans JP', -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Segoe UI", "Yu Gothic", YuGothic, "Hiragino Kaku Gothic ProN", "Hiragino Sans", "ヒラギノ角ゴ ProN W3", Verdana, Meiryo, "M+ 1p", sans-serif;
-  font-display: swap;
 }
 h2,
 h3,
