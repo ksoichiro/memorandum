@@ -608,10 +608,6 @@ blockquote pre {
 }
 .post-labels:before {
   width: 20px;
-  content: "__";
-  color: rgb(255, 255, 255);
-  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAYAAABWdVznAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAAKQAAACkBjoDdsQAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAACqSURBVCiRldAxCoIxDIbhtyKIOnoUhX9wdXb2AhbEI3gOKbaDg5uTi6PHEjc/l/5Qm4IYKKVNHtrESeKfGAKklO6SZlXu7L0/1WAAIGkOdEC/d0CIMe6aIMdL0gJ45rMDjjUqwdg59wCmxZ1BJQCo+zCo7+EAvBvFVvdjTSltJF3IkytCwN57H75ARmtJV2DUKjYgo5WkGzCpi8n/NyuEsIwxbls588Kv+ABOTWzRYtBOwwAAAABJRU5ErkJggg==)
-    no-repeat 0 center rgb(255, 255, 255);
 }
 .widget-blogger-syntax-highlighter {
   display: none;
@@ -741,6 +737,47 @@ body.mobile .AdSense {
   .post-body h2 {
     color: #c6c8d1;
   }
+  .tabs-inner .section:first-child {
+    border-top-color: #3d425b;
+  }
+  .tabs-inner .section:first-child ul {
+    border-top-color: #3d425b;
+    border-left-color: #3d425b;
+    border-right-color: #3d425b;
+  }
+  .tabs-inner .widget ul {
+    border-bottom-color: #3d425b;
+  }
+  .tabs-inner .widget li a {
+    color: #c6c8d1;
+    border-left-color: #3d425b;
+    border-right-color: #3d425b;
+  }
+  .tabs-inner .widget li.selected a,
+  .tabs-inner .widget li a:hover {
+    color: #c6c8d1;
+    background-color: #444b71;
+  }
+  .mobile .tabs-inner .PageList .widget-content {
+    background-color: #3d425b;
+    color: #c6c8d1;
+    border-top-color: #3d425b;
+    border-bottom-color: #3d425b;
+  }
+  .mobile .tabs-inner .PageList .widget-content .pagelist-arrow {
+    border-left-color: #3d425b;
+  }
+  .main-outer,
+  .fauxcolumn-left-outer .fauxcolumn-inner,
+  .fauxcolumn-right-outer .fauxcolumn-inner {
+    border-left-color: #3d425b;
+  }
+  h2,
+  .post-body h2,
+  h3,
+  h3.post-title {
+    border-bottom-color: #3d425b;
+  }
   h3.post-title a:link,
   h3.post-title a:active,
   h3.post-title a:hover,
@@ -792,6 +829,10 @@ body.mobile .AdSense {
   blockquote pre {
     border-left: 8px solid #3d425b;
     background: #272c42;
+  }
+  #backtotop {
+    background: #272c42;
+    color: #c6c8d1;
   }
 
   /*
