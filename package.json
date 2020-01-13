@@ -3,11 +3,13 @@
   "version": "0.0.0",
   "devDependencies": {
     "clean-css-cli": "^4.2.1",
-    "local-web-server": "^2.6.0"
+    "local-web-server": "^2.6.0",
+    "uglify-js": "^3.7.5"
   },
   "scripts": {
     "start": "ws",
     "css": "cleancss -o memorandum.min.css memorandum.css -d",
-    "css:inline": "cleancss -o inline.min.css inline.css -d"
+    "css:inline": "cleancss -o inline.min.css inline.css -d",
+    "js": "uglifyjs --compress --mangle -- memorandum.js > memorandum.min.js"
   }
 }
