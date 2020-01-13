@@ -278,6 +278,22 @@ Spring Framework</a>
   <p><strong>注意</strong>&#65306;このエントリは長いです&#12290;また&#12289;実装面の話は出てこず&#12289;結論もはっきりは出ていません&#12290;</p>
 </blockquote>
 
+<h3 id="HTMLサンプル">HTMLサンプル</h3>
+
+<p>CSSのminifyに失敗してハイライトがうまくいかない&#8230;</p>
+<pre class=" language-html"><code class="prism  language-html">&lt;b:if cond='data:blog.isMobile&#8217;&gt;
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>!--モバイル環境の場合&#8212;</span><span class="token punctuation">&gt;</span></span>
+&lt;style type='text/css&#8217;&gt;<span class="token style language-css">
+//*-widget_css_mobile_<span class="token number">2</span>_bundle<span class="token number">.</span>cssの内容
+</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>style</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token namespace">b:</span>else</span><span class="token punctuation">/&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>!--PC環境の場合&#8212;</span><span class="token punctuation">&gt;</span></span>
+&lt;style type='text/css&#8217;&gt;<span class="token style language-css">
+//*-css_bundle_v<span class="token number">2.</span>cssの内容
+</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>style</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span><span class="token namespace">b:</span>if</span><span class="token punctuation">&gt;</span></span>
+</code></pre>
+
 <h3 id="書き換え">書き換え</h3>
 
 <p>Lombokを使っているので<code>@RequiredArgsConstructor</code>を使った&#12290; <br>
