@@ -1,10 +1,92 @@
-/* Default style from skin */
-/* Content */
+:root {
+  --font-family-basic: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Segoe UI", "Yu Gothic", YuGothic, "Hiragino Kaku Gothic ProN", "Hiragino Sans", "ヒラギノ角ゴ ProN W3", Verdana, Meiryo, "M+ 1p", sans-serif;
+  --background-color: #bdedff;
+  --content-color: #222222;
+  --header-description-color: #555555;
+  --content-inner-background-color: #ffffff;
+  --h2-color: #666;
+  --post-body-h2-color: #222222;
+  --tabs-inner-section-first-child-border-color: #eeeeee;
+  --tabs-inner-widget-li-a-color: #999999;
+  --tabs-inner-widget-li-a-border-left-color: #ffffff;
+  --tabs-inner-widget-li-a-border-right-color: #eeeeee;
+  --tabs-inner-widget-li-selected-a-color: #000000;
+  --tabs-inner-widget-li-selected-a-background-color: #eeeeee;
+  --mobile-tabs-inner-pagelist-widget-content-background-color: #eeeeee;
+  --mobile-tabs-inner-pagelist-widget-content-color: #000000;
+  --mobile-tabs-inner-pagelist-widget-content-border-color: #eeeeee;
+  --mobile-tabs-inner-pagelist-widget-content-pagelist-arrow-border-color: #eeeeee;
+  --main-outer-border-color: #eeeeee;
+  --fauxcolumn-inner-color: #eeeeee;
+  --post-body-h2-border-color: #eeeeee;
+  --h2-border-color: #eeeeee;
+  --h3-border-color: #dddddd;
+  --h3-post-title-a-color: #3399bb;
+  --a-link-color: #135a7c;
+  --a-visited-color: #888888;
+  --a-hover-color: #33aaff;
+  --post-footer-color: #666666;
+  --post-footer-background-color: #f9f9f9;
+  --post-footer-border-color: #eeeeee;
+  --tabs-inner-widget-ul-background-color: #f8f8f8;
+  --blog-pager-older-link-background-color: #ffffff;
+  --code-background-color: #f8f8f8;
+  --blockquote-background-color: #f8f8f8;
+  --blockquote-border-color: #eee;
+  --blockquote-pre-background-color: #f4f4f4;
+  --blockquote-pre-border-color: #eeeeee;
+  --post-body-td-border-color: #dddddd;
+  --backtop-color: #000000;
+  --backtop-background-color: #6bbbd6;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background-color: #121212;
+    --content-color: #c6c8d1;
+    --header-description-color: #c6c8d1;
+    --content-inner-background-color: #161821;
+    --h2-color: #c6c8d1;
+    --post-body-h2-color: #c6c8d1;
+    --tabs-inner-section-first-child-border-color: #3d425b;
+    --tabs-inner-widget-li-a-color: #c6c8d1;
+    --tabs-inner-widget-li-a-border-left-color: #3d425b;
+    --tabs-inner-widget-li-a-border-right-color: #3d425b;
+    --tabs-inner-widget-li-selected-a-color: #c6c8d1;
+    --tabs-inner-widget-li-selected-a-background-color: #444b71;
+    --mobile-tabs-inner-pagelist-widget-content-background-color: transparent;
+    --mobile-tabs-inner-pagelist-widget-content-color: #c6c8d1;
+    --mobile-tabs-inner-pagelist-widget-content-border-color: #3d425b;
+    --mobile-tabs-inner-pagelist-widget-content-pagelist-arrow-border-color: #3d425b;
+    --main-outer-border-color: #3d425b;
+    --fauxcolumn-inner-color: #3d425b;
+    --post-body-h2-border-color: #3d425b;
+    --h2-border-color: #3d425b;
+    --h3-border-color: #3d425b;
+    --h3-post-title-a-color: #90CAF9;
+    --a-link-color: #90CAF9;
+    --a-visited-color: #90CAF9;
+    --a-hover-color: #64B5F6;
+    --post-footer-color: #c6c8d1;
+    --post-footer-background-color: transparent;
+    --post-footer-border-color: transparent;
+    --tabs-inner-widget-ul-background-color: transparent;
+    --blog-pager-older-link-background-color: transparent;
+    --code-background-color: #272c42;
+    --blockquote-background-color: #272c42;
+    --blockquote-border-color: #3d425b;
+    --blockquote-pre-background-color: #272c42;
+    --blockquote-pre-border-color: #3d425b;
+    --post-body-td-border-color: #3d425b;
+    --backtop-color: #c6c8d1;
+    --backtop-background-color: #272c42;
+  }
+}
 body {
   font-style: normal;
   font-weight: normal;
   font-size: 12px;
-  color: #222222;
+  background: var(--background-color);
+  color: var(--content-color);
   padding: 0px;
   min-width: 960px;
 }
@@ -14,7 +96,7 @@ h3,
 h4,
 div.fauxborder-left,
 h3.post-title {
-  font-family: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Segoe UI", "Yu Gothic", YuGothic, "Hiragino Kaku Gothic ProN", "Hiragino Sans", "ヒラギノ角ゴ ProN W3", Verdana, Meiryo, "M+ 1p", sans-serif;
+  font-family: var(--font-family-basic);
   font-display: swap;
 }
 html body .region-inner {
@@ -24,15 +106,15 @@ html body .region-inner {
 }
 a:link {
   text-decoration: none;
-  color: #135a7c;
+  color: var(--a-link-color);
 }
 a:visited {
   text-decoration: none;
-  color: #888888;
+  color: var(--a-visited-color);
 }
 a:hover {
   text-decoration: underline;
-  color: #33aaff;
+  color: var(--a-hover-color);
 }
 .body-fauxcolumn-outer .cap-top {
   position: absolute;
@@ -54,7 +136,7 @@ a:hover {
   padding: 10px 10px;
 }
 .content-inner {
-  background-color: #ffffff;
+  background-color: var(--content-inner-background-color);
 }
 /* Header */
 .header-outer {
@@ -73,7 +155,7 @@ a:hover {
 }
 .Header .description {
   font-size: 120%;
-  color: #555555;
+  color: var(--header-description-color);
 }
 .header-inner .Header .titlewrapper {
   padding: 22px 30px;
@@ -83,16 +165,16 @@ a:hover {
 }
 /* Tabs */
 .tabs-inner .section:first-child {
-  border-top: 1px solid #eeeeee;
+  border-top: 1px solid var(--tabs-inner-section-first-child-border-color);
 }
 .tabs-inner .section:first-child ul {
   margin-top: -1px;
-  border-top: 1px solid #eeeeee;
-  border-left: 0 solid #eeeeee;
-  border-right: 0 solid #eeeeee;
+  border-top: 1px solid var(--tabs-inner-section-first-child-border-color);
+  border-left: 0 solid var(--tabs-inner-section-first-child-border-color);
+  border-right: 0 solid var(--tabs-inner-section-first-child-border-color);
 }
 .tabs-inner .widget ul {
-  border-bottom: 1px solid #eeeeee;
+  border-bottom: 1px solid var(--tabs-inner-section-first-child-border-color);
   margin-top: 0;
   margin-left: -30px;
   margin-right: -30px;
@@ -103,28 +185,28 @@ a:hover {
   font-style: normal;
   font-weight: normal;
   font-size: 14px;
-  color: #999999;
-  border-left: 1px solid #ffffff;
-  border-right: 1px solid #eeeeee;
+  color: var(--tabs-inner-widget-li-a-color);
+  border-left: 1px solid var(--tabs-inner-widget-li-a-border-left-color);
+  border-right: 1px solid var(--tabs-inner-widget-li-a-border-right-color);
 }
 .tabs-inner .widget li:first-child a {
   border-left: none;
 }
 .tabs-inner .widget li.selected a,
 .tabs-inner .widget li a:hover {
-  color: #000000;
-  background-color: #eeeeee;
+  color: var(--tabs-inner-widget-li-selected-a-color);
+  background-color: var(--tabs-inner-widget-li-selected-a-background-color);
   text-decoration: none;
 }
 /* Columns */
 .main-outer {
-  border-top: 0 solid #eeeeee;
+  border-top: 0 solid var(--main-outer-border-color);
 }
 .fauxcolumn-left-outer .fauxcolumn-inner {
-  border-right: 1px solid #eeeeee;
+  border-right: 1px solid var(--fauxcolumn-inner-color);
 }
 .fauxcolumn-right-outer .fauxcolumn-inner {
-  border-left: 1px solid #eeeeee;
+  border-left: 1px solid var(--fauxcolumn-inner-color);
 }
 /* Headings */
 h2 {
@@ -145,7 +227,7 @@ h2 {
 /* Posts */
 .date-header span {
   background-color: transparent;
-  color: #222222;
+  color: var(--content-color);
   padding: inherit;
   letter-spacing: inherit;
   margin: inherit;
@@ -201,9 +283,9 @@ h3.post-title {
 .post-footer {
   margin: 20px -2px 0;
   padding: 5px 10px;
-  color: #666666;
-  background-color: #f9f9f9;
-  border-bottom: 1px solid #eeeeee;
+  color: var(--post-footer-color);
+  background-color: var(--post-footer-background-color);
+  border-bottom: 1px solid var(--post-footer-border-color);
   line-height: 1.6;
   font-size: 90%;
 }
@@ -247,7 +329,7 @@ h3.post-title {
 .blog-pager-older-link,
 .home-link,
 .blog-pager-newer-link {
-  background-color: #ffffff;
+  background-color: var(--blog-pager-older-link-background-color);
   padding: 5px;
 }
 .footer-outer {
@@ -295,10 +377,10 @@ body.mobile .AdSense {
 }
 .mobile .main-inner,
 .mobile .footer-inner {
-  background-color: #ffffff;
+  background-color: var(--content-inner-background-color);
 }
 .mobile-index-contents {
-  color: #222222;
+  color: var(--content-color);
 }
 .mobile-link-button {
   background-color: #135a7c;
@@ -311,13 +393,13 @@ body.mobile .AdSense {
   border-top: none;
 }
 .mobile .tabs-inner .PageList .widget-content {
-  background-color: #eeeeee;
-  color: #000000;
-  border-top: 1px solid #eeeeee;
-  border-bottom: 1px solid #eeeeee;
+  background-color: var(--mobile-tabs-inner-pagelist-widget-content-background-color);
+  color: var(--mobile-tabs-inner-pagelist-widget-content-color);
+  border-top: 1px solid var(--mobile-tabs-inner-pagelist-widget-content-border-color);
+  border-bottom: 1px solid var(--mobile-tabs-inner-pagelist-widget-content-border-color);
 }
 .mobile .tabs-inner .PageList .widget-content .pagelist-arrow {
-  border-left: 1px solid #eeeeee;
+  border-left: 1px solid var(--mobile-tabs-inner-pagelist-widget-content-pagelist-arrow-border-color);
 }
 .mobile .blogger-iframe-colorize {
   display: block !important;
@@ -386,15 +468,12 @@ display: block !important;
 #navbar {
   height: 0;
 }
-body {
-  background: #bdedff;
-}
 .body-fauxcolumn-outer .cap-top,
 .body-fauxcolumn-outer .cap-top .cap-left {
   background: inherit;
 }
 .tabs-inner .widget ul {
-  background: #f8f8f8;
+  background: var(--tabs-inner-widget-ul-background-color);
 }
 .titlewrapper .title {
   margin: 0 10px;
@@ -412,8 +491,8 @@ h4 {
   font-weight: 600;
 }
 h2 {
-  border-bottom: 1px solid #eee;
-  color: #666;
+  border-bottom: 1px solid var(--h2-border-color);
+  color: var(--h2-color);
 }
 h2.date-header {
   border-bottom: none;
@@ -423,24 +502,24 @@ h2.date-header {
   font-size: 1.2em;
 }
 h3 {
-  border-bottom: 2px solid #ddd;
+  border-bottom: 2px solid var(--h3-border-color);
   margin-top: 16px;
   margin-bottom: 16px;
 }
 h3.post-title {
   font-weight: 800;
-  border-bottom: 4px solid #ddd;
+  border-bottom: 4px solid var(--h3-border-color);
   margin-top: 0px;
   margin-bottom: 8px;
 }
 h3.mobile-index-title {
-  border-bottom: 4px solid #ddd;
+  border-bottom: 4px solid var(--h3-border-color);
 }
 h3.post-title a:link,
 h3.post-title a:active,
 h3.post-title a:hover,
 h3.post-title a:visited {
-  color: #3399bb;
+  color: var(--h3-post-title-a-color);
 }
 h4 {
   margin-top: 12px;
@@ -462,18 +541,18 @@ pre,
 pre code,
 p code,
 li code {
-  font-family: Consolas, Menlo, Courier, "Courier New", 'Noto Sans JP', -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Segoe UI", "Yu Gothic", YuGothic, "Hiragino Kaku Gothic ProN", "Hiragino Sans", "ヒラギノ角ゴ ProN W3", Verdana, Meiryo, "M+ 1p", sans-serif;
+  font-family: Consolas, Menlo, Courier, "Courier New", var(--font-family-basic);
   font-display: swap;
 }
 pre,
 blockquote {
-  border-left: 8px solid #eee;
-  background: #f8f8f8;
+  border-left: 8px solid var(--blockquote-border-color);
+  background-color: var(--blockquote-background-color);
   margin: 0;
 }
 p code,
 li code {
-  background: #f8f8f8;
+  background-color: var(--code-background-color);
   padding: 2px 4px;
   margin: 0px 2px;
 }
@@ -486,8 +565,8 @@ blockquote p {
 blockquote pre {
   margin-left: 16px;
   margin-right: 16px;
-  background: #f4f4f4;
-  border-left: 8px solid #eee;
+  background: var(--blockquote-pre-background-color);
+  border-left: 8px solid var(--blockquote-pre-border-color);
 }
 /* /Blockquotes and Codes */
 
@@ -561,8 +640,8 @@ body.mobile .AdSense {
   bottom: 10px;
   right: 5px;
   text-align: center;
-  background: #6bbbd6;
-  color: #000;
+  background: var(--backtop-background-color);
+  color: var(--backtop-color);
   text-decoration: none;
   border-radius: 6px;
   -webkit-border-radius: 6px;
@@ -577,8 +656,8 @@ body.mobile .AdSense {
   -moz-opacity: 1;
 }
 .post-body h2 {
-  color: #222;
-  border-bottom: 3px solid #eee;
+  color: var(--post-body-h2-color);
+  border-bottom: 3px solid var(--post-body-h2-border-color);
   margin-top: 16px;
   margin-bottom: 16px;
 }
@@ -592,7 +671,7 @@ body.mobile .AdSense {
   padding: 8px;
 }
 .post-body td {
-  border-top: 1px solid #ddd;
+  border-top: 1px solid var(--post-body-td-border-color);
   padding: 8px;
 }
 .label-icon {
@@ -725,10 +804,6 @@ body.mobile .AdSense {
 }
 
 @media (prefers-color-scheme: dark) {
-  body {
-    background-color:#121212;
-    color: #c6c8d1;
-  }
   ::selection {
     background-color: rgba(68, 75, 113, 0.8);
     color: #c6c8d1;
@@ -737,130 +812,20 @@ body.mobile .AdSense {
     background-color: rgba(68, 75, 113, 0.8);
     color: #c6c8d1;
   }
-  .Header .description {
-    color: #c6c8d1;
-  }
-  .content-inner,
-  .mobile .main-inner,
-  .mobile .footer-inner {
-    background-color:#161821;
-  }
-  .date-header span,
-  .mobile-index-contents {
-    color: #c6c8d1;
-  }
   .mobile-index-thumbnail img,
   .post-body img {
     filter: grayscale(30%);
   }
-  h2,
-  .post-body h2 {
-    color: #c6c8d1;
-  }
-  .tabs-inner .section:first-child {
-    border-top-color: #3d425b;
-  }
-  .tabs-inner .section:first-child ul {
-    border-top-color: #3d425b;
-    border-left-color: #3d425b;
-    border-right-color: #3d425b;
-  }
-  .tabs-inner .widget ul {
-    border-bottom-color: #3d425b;
-  }
-  .tabs-inner .widget li a {
-    color: #c6c8d1;
-    border-left-color: #3d425b;
-    border-right-color: #3d425b;
-  }
-  .tabs-inner .widget li.selected a,
-  .tabs-inner .widget li a:hover {
-    color: #c6c8d1;
-    background-color: #444b71;
-  }
-  .mobile .tabs-inner .PageList .widget-content {
-    background-color: #3d425b;
-    color: #c6c8d1;
-    border-top-color: #3d425b;
-    border-bottom-color: #3d425b;
-  }
-  .mobile .tabs-inner .PageList .widget-content .pagelist-arrow {
-    border-left-color: #3d425b;
-  }
-  .main-outer,
-  .fauxcolumn-left-outer .fauxcolumn-inner,
-  .fauxcolumn-right-outer .fauxcolumn-inner {
-    border-left-color: #3d425b;
-  }
-  h2,
-  .post-body h2,
-  h3,
-  h3.post-title,
-  h3.mobile-index-title,
   .mobile-date-outer {
     border-bottom-color: #3d425b;
-  }
-  h3.post-title a:link,
-  h3.post-title a:active,
-  h3.post-title a:hover,
-  h3.post-title a:visited {
-    color: #90CAF9;
-  }
-  .post-footer {
-    color: #c6c8d1;
-    background-color: transparent;
-    border-bottom-color: transparent;
-  }
-  .mobile .tabs-inner .PageList .widget-content {
-    background-color: transparent;
-    color: #c6c8d1;
-  }
-  .tabs-inner .widget ul {
-    background-color: transparent;
   }
   .tabs-inner .section ul {
     border-top-color: transparent;
   }
-  .blog-pager-older-link,
-  .home-link,
-  .blog-pager-newer-link {
-    background-color: transparent;
+  .status-msg-bg {
+    background: var(--backtop-background-color);
+    color: var(--backtop-color);
   }
-  a:link {
-    color: #90CAF9;
-  }
-  a:visited {
-    color: #90CAF9;
-  }
-  a:hover {
-    color: #64B5F6;
-  }
-  p code,
-  li code {
-    background: #272c42;
-  }
-  pre,
-  blockquote {
-    border-left: 8px solid #3d425b;
-    background: #272c42;
-  }
-  p code,
-  li code {
-    background: #272c42;
-  }
-  blockquote pre {
-    border-left: 8px solid #3d425b;
-    background: #272c42;
-  }
-  .post-body td {
-    border-top-color: #3d425b;
-  }
-  .status-msg-bg,
-  #backtotop {
-    background: #272c42;
-    color: #c6c8d1;
-  }
-
   /*
   Dracula Theme v1.2.0
   https://github.com/zenorocha/dracula-theme
