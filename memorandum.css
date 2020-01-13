@@ -319,6 +319,13 @@ body.mobile .AdSense {
 .mobile .tabs-inner .PageList .widget-content .pagelist-arrow {
   border-left: 1px solid #eeeeee;
 }
+.mobile .blogger-iframe-colorize {
+  display: block !important;
+}
+
+.blogger-iframe-colorize {
+display: block !important;
+}
 
 /** template-skin-1 */
 
@@ -844,6 +851,10 @@ body.mobile .AdSense {
     border-left: 8px solid #3d425b;
     background: #272c42;
   }
+  .post-body td {
+    border-top-color: #3d425b;
+  }
+  .status-msg-bg,
   #backtotop {
     background: #272c42;
     color: #c6c8d1;
