@@ -249,9 +249,7 @@ html #Header1 {
   display: block
 }
 
-.mobile-date-outer&gt;
-
-div {
+.mobile-date-outer>div {
   position: relative
 }
 
@@ -261,12 +259,7 @@ div {
 }
 
 .mobile-index-title {
-  font: 120% &#39;
-  Trebuchet MS&#39;
-  ,
-  Trebuchet,
-  Verdana,
-  sans-serif;
+  font: 120% 'Trebuchet MS',Trebuchet,Verdana,sans-serif;
   margin-top: .5em;
   margin-bottom: .5em;
   width: 240px
@@ -388,7 +381,7 @@ body {
   position: absolute;
   top: 0;
   bottom: 0;
-  height: expression(this.parentNode.offsetHeight + &#39; px&#39; );
+  height: expression(this.parentNode.offsetHeight + '; px'; );
   overflow: hidden
 }
 
@@ -459,7 +452,7 @@ body {
   position: absolute;
   right: 0;
   height: 100%;
-  _height: expression(this.parentNode.offsetHeight + &#39; px&#39; )
+  _height: expression(this.parentNode.offsetHeight + '; px'; )
 }
 
 table.section-columns {
@@ -492,7 +485,7 @@ table.section-columns td.columns-cell {
   left: 0;
   z-index: -1;
   height: 100%;
-  _height: expression(this.parentNode.offsetHeight + &#39; px&#39; );
+  _height: expression(this.parentNode.offsetHeight + '; px'; );
   width: 100%;
   overflow: hidden
 }
@@ -763,15 +756,11 @@ h3 a:hover {
   line-height: 1.6
 }
 
-.post-footer-line&gt;
-
-* {
+.post-footer-line>* {
   margin-right: 1em
 }
 
-.post-footer-line&gt;
-
-*:last-child {
+.post-footer-line>*:last-child {
   margin-right: 0
 }
 
@@ -779,9 +768,7 @@ h3 a:hover {
   margin-left: -1em
 }
 
-.post-footer-line&gt;
-
-*:first-child {
+.post-footer-line>*:first-child {
   margin-left: 0
 }
 
@@ -902,7 +889,7 @@ table.section-columns td.first.columns-cell {
 }
 
 .expanded-backlink .backlink-toggle-zippy {
-  background-image: url(&quot;https://resources.blogblog.com/img/triangle_open.gif&quot;)
+  background-image: url("https://resources.blogblog.com/img/triangle_open.gif")
 }
 
 .collapsed-backlink .collapseable {
@@ -1209,12 +1196,12 @@ iframe.avatar-hovercard-iframe {
 
 .comments .thread-expanded .thread-arrow {
   background:
-    url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAcAAAAHCAYAAADEUlfTAAAAG0lEQVR42mNgwAfKy8v/48I4FeA0AacVDFQBAP9wJkE/KhUMAAAAAElFTkSuQmCC&quot;) no-repeat scroll 0 0 transparent
+    url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAcAAAAHCAYAAADEUlfTAAAAG0lEQVR42mNgwAfKy8v/48I4FeA0AacVDFQBAP9wJkE/KhUMAAAAAElFTkSuQmCC") no-repeat scroll 0 0 transparent
 }
 
 .comments .thread-collapsed .thread-arrow {
   background:
-    url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAcAAAAHCAYAAADEUlfTAAAAJUlEQVR42mNgAILy8vL/DLgASBKnApgkVgXIkhgKiNKJ005s4gDLbCZBiSxfygAAAABJRU5ErkJggg==&quot;) no-repeat scroll 0 0 transparent
+    url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAcAAAAHCAYAAADEUlfTAAAAJUlEQVR42mNgAILy8vL/DLgASBKnApgkVgXIkhgKiNKJ005s4gDLbCZBiSxfygAAAABJRU5ErkJggg==") no-repeat scroll 0 0 transparent
 }
 
 .comments .avatar-image-container {
@@ -1265,7 +1252,7 @@ td.tr-caption {
 }
 
 .delete-comment-icon {
-  background: url(&quot;/img/icon_delete13.gif&quot;) no-repeat left;
+  background: url("/img/icon_delete13.gif") no-repeat left;
   padding: 7px
 }
 
