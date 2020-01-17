@@ -7,6 +7,7 @@
     "local-web-server": "^2.6.0",
     "npm-run-all": "^4.1.5",
     "replace-in-files-cli": "^0.3.0",
+    "sass": "^1.24.5",
     "uglify-js": "^3.7.5"
   },
   "scripts": {
@@ -22,11 +23,10 @@
     "build:css:bundle:pc:escape3": "replace-in-files --string='\"' --replacement='&quot;' src/template/partials/bundle-pc-css.min.css",
     "build:css:bundle:pc": "run-s build:css:bundle:pc:**",
     "build:css:bundle": "run-p build:css:bundle:mobile build:css:bundle:pc",
-    "build:css:inline": "cleancss -o src/template/partials/inline-css.min.css inline.css",
+    "build:css:inline": "sass src/css/inline.scss | cleancss -o src/template/partials/inline-css.min.css",
     "build:template": "hbs src/template/template.hbs --partial 'src/template/partials/*' -o dist/template",
     "build": "run-s build:css:bundle build:css:inline build:template",
     "css": "cleancss -o memorandum.min.css memorandum.css -d",
-    "css:inline": "cleancss -o inline.min.css inline.css -d",
     "js": "uglifyjs --compress --mangle -- memorandum.js > memorandum.min.js"
   }
 }
