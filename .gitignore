@@ -1,3 +1,4 @@
 /node_modules/
 /dist/
 /src/template/partials/*.min.css
+/src/template/partials/*.js
