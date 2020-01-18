@@ -987,13 +987,13 @@ div.clear {
 
 .label-size-1 {
   font-size: 80%;
-  filter: alpha(80);
+  filter: alpha(opacity=80);
   opacity: .8
 }
 
 .label-size-2 {
   font-size: 90%;
-  filter: alpha(90);
+  filter: alpha(opacity=90);
   opacity: .9
 }
 

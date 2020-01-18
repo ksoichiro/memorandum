@@ -381,7 +381,7 @@ body {
   position: absolute;
   top: 0;
   bottom: 0;
-  height: expression(this.parentNode.offsetHeight + '; px'; );
+  height: expression(this.parentNode.offsetHeight + '; px' );
   overflow: hidden
 }
 
@@ -452,7 +452,7 @@ body {
   position: absolute;
   right: 0;
   height: 100%;
-  _height: expression(this.parentNode.offsetHeight + '; px'; )
+  _height: expression(this.parentNode.offsetHeight + '; px' )
 }
 
 table.section-columns {
@@ -485,7 +485,7 @@ table.section-columns td.columns-cell {
   left: 0;
   z-index: -1;
   height: 100%;
-  _height: expression(this.parentNode.offsetHeight + '; px'; );
+  _height: expression(this.parentNode.offsetHeight + '; px' );
   width: 100%;
   overflow: hidden
 }
