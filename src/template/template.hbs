@@ -17,11 +17,15 @@
 
 <b:if cond='data:blog.isMobile'>
 <style type='text/css'>
+/*<![CDATA[*/
 {{> bundle-mobile-css.min }}
+/*]]>*/
 </style>
 <b:else/>
 <style type='text/css'>
+/*<![CDATA[*/
 {{> bundle-pc-css.min }}
+/*]]>*/
 </style>
 </b:if>
     <b:skin><![CDATA[
@@ -33,7 +37,9 @@
     </b:template-skin>
 
 <style>
+/*<![CDATA[*/
 {{> inline-css.min }}
+/*]]>*/
 </style>
 <link as='style' href='//ksoichiro.github.io/memorandum/memorandum.min.css' onload='this.rel=&apos;stylesheet&apos;' rel='preload'/>
 <!-- Google -->
