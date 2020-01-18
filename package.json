@@ -29,7 +29,7 @@
     "build:css:inline": "sass src/css/inline.scss | cleancss -o src/template/partials/inline-css.min.css",
     "build:template": "hbs src/template/template.hbs --partial 'src/template/partials/*' -o dist/template",
     "build": "run-s build:css:bundle build:css:inline build:template",
-    "css": "cleancss -o memorandum.min.css memorandum.css -d",
+    "css": "cleancss -o memorandum.min.css src/css/memorandum.css -d",
     "js": "uglifyjs --compress --mangle -- memorandum.js > memorandum.min.js"
   }
 }
