@@ -30,7 +30,7 @@
     "build:template:html": "hbs src/template/template.hbs --partial 'src/template/partials/*' -o dist/template",
     "build:template": "run-s build:css:bundle build:css:inline build:template:html",
     "build:main:css": "cleancss -o memorandum.min.css src/css/memorandum.css -d",
-    "build:main:js": "uglifyjs --compress --mangle -- memorandum.js > memorandum.min.js",
+    "build:main:js": "uglifyjs --compress --mangle -- src/js/memorandum.js > memorandum.min.js",
     "build": "run-p build:template build:main:*"
   }
 }
