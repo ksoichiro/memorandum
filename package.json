@@ -28,8 +28,6 @@
     "build:css:bundle": "run-p build:css:bundle:mobile build:css:bundle:pc",
     "build:css:inline": "sass src/css/inline.scss | cleancss -o src/template/partials/inline-css.min.css",
     "build:js:fonts:cp": "cp src/js/load-fonts-js.js src/template/partials/load-fonts-js.js",
-    "build:js:fonts:escape1": "replace-in-files --string='&' --replacement='&amp;' src/template/partials/load-fonts-js.js",
-    "build:js:fonts:escape2": "replace-in-files --string=\"'\" --replacement='&#39;' src/template/partials/load-fonts-js.js",
     "build:js:fonts": "run-s build:js:fonts:*",
     "build:template:partials": "run-p build:css:bundle build:css:inline build:js:fonts",
     "build:template:html": "hbs src/template/template.hbs --partial 'src/template/partials/*' -o dist/template",
