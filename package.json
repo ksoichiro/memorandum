@@ -22,7 +22,7 @@
     "build:template:partials": "run-p build:css:bundle build:css:inline build:js:fonts",
     "build:template:html": "hbs src/template/template.hbs --partial 'src/template/partials/*' -o dist/template",
     "build:template": "run-s build:template:*",
-    "build:main:css": "cleancss -o memorandum.min.css src/css/memorandum.css -d",
+    "build:main:css": "sass src/css/memorandum.scss | cleancss -o memorandum.min.css",
     "build:main:js": "uglifyjs --compress --mangle -- src/js/memorandum.js > memorandum.min.js",
     "build": "run-p build:template build:main:*"
   }
