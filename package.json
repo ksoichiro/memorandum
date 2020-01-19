@@ -1,5 +1,6 @@
 {
   "name": "memorandum",
+  "private": true,
   "version": "0.0.0",
   "devDependencies": {
     "clean-css-cli": "^4.2.1",
