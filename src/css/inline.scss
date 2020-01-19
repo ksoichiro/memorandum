@@ -1,3 +1,6 @@
+:root {
+
+}
 body {
   font-style: normal;
   font-weight: normal;
@@ -308,5 +311,22 @@ html body .region-inner {
   #backtotop {
     background: #272c42;
     color: #c6c8d1;
+  }
+}
+.share {
+  svg {
+    border: 1px solid #c6c8d1;
+    fill: #c6c8d1;
+    &:hover {
+      fill: #ffffff;
+    }
+  }
+  &.twitter svg:hover {
+    background: #1DA1F2;
+    border-color: #1DA1F2;
+  }
+  &.pocket svg:hover {
+    background: #ef3f56;
+    border-color: #ef3f56;
   }
 }
