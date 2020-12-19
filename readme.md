@@ -51,3 +51,11 @@ No.3 should be copied to Blogger theme manually.
 ```
 cat dist/template/template.html | pbcopy
 ```
+
+Before pasting to Blogger theme, copy the current content from Blogger, paste it to `latest.html` and run
+
+```
+npm run validate
+```
+
+to validate the change is intended.

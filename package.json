@@ -27,7 +27,8 @@
     "build:template": "run-s build:template:*",
     "build:main:css": "sass src/css/memorandum.scss | cleancss -o memorandum.min.css",
     "build:main:js": "uglifyjs --compress --mangle -- src/js/memorandum.js > memorandum.min.js",
-    "build": "run-p build:template build:main:*"
+    "build": "run-p build:template build:main:*",
+    "validate": "diff latest.html dist/template/template.html"
   },
   "dependencies": {}
 }
