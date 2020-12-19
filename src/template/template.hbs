@@ -72,7 +72,7 @@
       gapi.load(&quot;gapi.iframes:gapi.iframes.style.bubble&quot;, function() {
         if (gapi.iframes &amp;&amp; gapi.iframes.getContext) {
           gapi.iframes.getContext().openChild({
-              url: &#39;https://www.blogger.com/navbar.g?targetBlogID\x3d7702612945354492373\x26blogName\x3dmemorandum\x26publishMode\x3dPUBLISH_MODE_BLOGSPOT\x26navbarType\x3dDISABLED\x26layoutType\x3dLAYOUTS\x26searchRoot\x3dhttps://ksoichiro.blogspot.com/search\x26blogLocale\x3dja\x26v\x3d2\x26homepageUrl\x3dhttps://ksoichiro.blogspot.com/\x26vt\x3d5029045396697738898&#39;,
+              url: &#39;https://www.blogger.com/navbar.g?targetBlogID\x3d7702612945354492373\x26blogName\x3dmemorandum\x26publishMode\x3dPUBLISH_MODE_BLOGSPOT\x26navbarType\x3dDISABLED\x26layoutType\x3dLAYOUTS\x26searchRoot\x3dhttps://ksoichiro.blogspot.com/search\x26blogLocale\x3dja\x26v\x3d2\x26homepageUrl\x3dhttp://ksoichiro.blogspot.com/\x26vt\x3d-1502248955471931554&#39;,
               where: document.getElementById(&quot;navbar-iframe-container&quot;),
               id: &quot;navbar-iframe&quot;
           });
@@ -434,13 +434,7 @@ head.appendChild(script);
 
   <b:include cond='data:top.showPlusOne' name='googlePlusBootstrap'/>
 </b:includable>
-              <b:includable id='backlinkDeleteIcon' var='backlink'>
-  <span expr:class='&quot;item-control &quot; + data:backlink.adminClass'>
-    <a expr:href='data:backlink.deleteUrl' expr:title='data:top.deleteBacklinkMsg'>
-      <img src='https://resources.blogblog.com/img/icon_delete13.gif'/>
-    </a>
-  </span>
-</b:includable>
+              <b:includable id='backlinkDeleteIcon' var='backlink'/>
               <b:includable id='backlinks' var='post'>
   <a name='links'/><h4><data:post.backlinksLabel/></h4>
   <b:if cond='data:post.numBacklinks != 0'>
@@ -504,19 +498,12 @@ head.appendChild(script);
   </span>
 </b:includable>
               <b:includable id='comment_count_picker' var='post'>
-  <b:if cond='data:post.commentSource == 1'>
-    <span class='cmt_count_iframe_holder' expr:data-count='data:post.numComments' expr:data-onclick='data:post.addCommentOnclick' expr:data-post-url='data:post.url' expr:data-url='data:post.url.canonical.http'>
-    </span>
-  <b:else/>
-    <a class='comment-link' expr:href='data:post.addCommentUrl' expr:onclick='data:post.addCommentOnclick'>
-      <data:post.commentLabelFull/>:
-    </a>
-  </b:if>
+  <a class='comment-link' expr:href='data:post.addCommentUrl' expr:onclick='data:post.addCommentOnclick'>
+    <data:post.commentLabelFull/>:
+  </a>
 </b:includable>
               <b:includable id='comment_picker' var='post'>
-  <b:if cond='data:post.commentSource == 1'>
-    <b:include data='post' name='iframe_comments'/>
-  <b:elseif cond='data:post.showThreadedComments'/>
+  <b:if cond='data:post.showThreadedComments'>
     <b:include data='post' name='threaded_comments'/>
   <b:else/>
     <b:include data='post' name='comments'/>
@@ -626,11 +613,6 @@ head.appendChild(script);
       </div>
     </b:if>
 
-    <div id='backlinks-container'>
-    <div expr:id='data:widget.instanceId + &quot;_backlinks-container&quot;'>
-       <b:include cond='data:post.showBacklinks' data='post' name='backlinks'/>
-    </div>
-    </div>
   </div>
 </b:includable>
               <b:includable id='feedLinks'>
@@ -658,15 +640,7 @@ head.appendChild(script);
   </div>
 </b:includable>
               <b:includable id='iframe_comments' var='post'>
-
-  <b:if cond='data:post.allowIframeComments'>
-    <script expr:src='data:post.iframeCommentSrc' type='text/javascript'/>
-    <div class='cmt_iframe_holder' expr:data-href='data:post.url.canonical' expr:data-viewtype='data:post.viewType'/>
-
-    <b:if cond='data:post.embedCommentForm == &quot;false&quot;'>
-      <a expr:href='data:post.addCommentUrl' expr:onclick='data:post.addCommentOnclick'><data:postCommentMsg/></a>
-    </b:if>
-  </b:if>
+  <!-- G+ comments, no longer available. The includable is retained for backwards-compatibility. -->
 </b:includable>
               <b:includable id='mobile-index-post' var='post'>
   <div class='mobile-date-outer date-outer'>
@@ -854,24 +828,24 @@ head.appendChild(script);
             </div>
 
             <div class='post-footer-line post-footer-line-2'>
-<a class='share twitter' href='' target='_blank' rel='nofollow'>
-<svg height="32px" role="img" viewBox="-12 -12 48 48" xmlns="http://www.w3.org/2000/svg"><title>Twitterでシェア</title><path d="M23.954 4.569c-.885.389-1.83.654-2.825.775 1.014-.611 1.794-1.574 2.163-2.723-.951.555-2.005.959-3.127 1.184-.896-.959-2.173-1.559-3.591-1.559-2.717 0-4.92 2.203-4.92 4.917 0 .39.045.765.127 1.124C7.691 8.094 4.066 6.13 1.64 3.161c-.427.722-.666 1.561-.666 2.475 0 1.71.87 3.213 2.188 4.096-.807-.026-1.566-.248-2.228-.616v.061c0 2.385 1.693 4.374 3.946 4.827-.413.111-.849.171-1.296.171-.314 0-.615-.03-.916-.086.631 1.953 2.445 3.377 4.604 3.417-1.68 1.319-3.809 2.105-6.102 2.105-.39 0-.779-.023-1.17-.067 2.189 1.394 4.768 2.209 7.557 2.209 9.054 0 13.999-7.496 13.999-13.986 0-.209 0-.42-.015-.63.961-.689 1.8-1.56 2.46-2.548l-.047-.02z"/></svg>
+<a class='share twitter' href='' rel='nofollow' target='_blank'>
+<svg height='32px' role='img' viewBox='-12 -12 48 48' xmlns='http://www.w3.org/2000/svg'><title>Twitterでシェア</title><path d='M23.954 4.569c-.885.389-1.83.654-2.825.775 1.014-.611 1.794-1.574 2.163-2.723-.951.555-2.005.959-3.127 1.184-.896-.959-2.173-1.559-3.591-1.559-2.717 0-4.92 2.203-4.92 4.917 0 .39.045.765.127 1.124C7.691 8.094 4.066 6.13 1.64 3.161c-.427.722-.666 1.561-.666 2.475 0 1.71.87 3.213 2.188 4.096-.807-.026-1.566-.248-2.228-.616v.061c0 2.385 1.693 4.374 3.946 4.827-.413.111-.849.171-1.296.171-.314 0-.615-.03-.916-.086.631 1.953 2.445 3.377 4.604 3.417-1.68 1.319-3.809 2.105-6.102 2.105-.39 0-.779-.023-1.17-.067 2.189 1.394 4.768 2.209 7.557 2.209 9.054 0 13.999-7.496 13.999-13.986 0-.209 0-.42-.015-.63.961-.689 1.8-1.56 2.46-2.548l-.047-.02z'/></svg>
 </a><script>
 (function (d) {
   var u = &#39;https://twitter.com/share?url=&#39; + encodeURIComponent(&quot;<data:post.url/>&quot;) + &#39;&amp;text=&#39; + encodeURIComponent(&quot;<data:post.title/>&quot;);
 d.currentScript.previousSibling.setAttribute(&#39;href&#39;, u);
 })(document);
 </script>
-<a class='share hatena' href='' target='_blank' rel='nofollow'>
-<svg height='32px' role="img" viewBox="-12 -12 48 48" xmlns="http://www.w3.org/2000/svg"><title>はてなブックマークに追加</title><path d="M20.47 0C22.42 0 24 1.58 24 3.53v16.94c0 1.95-1.58 3.53-3.53 3.53H3.53C1.58 24 0 22.42 0 20.47V3.53C0 1.58 1.58 0 3.53 0h16.94zm-3.705 14.47c-.78 0-1.41.63-1.41 1.41s.63 1.414 1.41 1.414 1.41-.645 1.41-1.425-.63-1.41-1.41-1.41zM8.61 17.247c1.2 0 2.056-.042 2.58-.12.526-.084.976-.222 1.32-.412.45-.232.78-.564 1.02-.99s.36-.915.36-1.48c0-.78-.21-1.403-.63-1.87-.42-.48-.99-.734-1.74-.794.66-.18 1.156-.45 1.456-.81.315-.344.465-.824.465-1.424 0-.48-.103-.885-.3-1.26-.21-.36-.493-.645-.883-.87-.345-.195-.735-.315-1.215-.405-.464-.074-1.29-.12-2.474-.12H5.654v10.486H8.61zm.736-4.185c.705 0 1.185.088 1.44.262.27.18.39.495.39.93 0 .405-.135.69-.42.855-.27.18-.765.254-1.44.254H8.31v-2.297h1.05zm8.656.706v-7.06h-2.46v7.06H18zM8.925 9.08c.71 0 1.185.08 1.432.24.245.16.367.435.367.83 0 .38-.13.646-.39.804-.265.154-.747.232-1.452.232h-.57V9.08h.615z"/></svg>
+<a class='share hatena' href='' rel='nofollow' target='_blank'>
+<svg height='32px' role='img' viewBox='-12 -12 48 48' xmlns='http://www.w3.org/2000/svg'><title>はてなブックマークに追加</title><path d='M20.47 0C22.42 0 24 1.58 24 3.53v16.94c0 1.95-1.58 3.53-3.53 3.53H3.53C1.58 24 0 22.42 0 20.47V3.53C0 1.58 1.58 0 3.53 0h16.94zm-3.705 14.47c-.78 0-1.41.63-1.41 1.41s.63 1.414 1.41 1.414 1.41-.645 1.41-1.425-.63-1.41-1.41-1.41zM8.61 17.247c1.2 0 2.056-.042 2.58-.12.526-.084.976-.222 1.32-.412.45-.232.78-.564 1.02-.99s.36-.915.36-1.48c0-.78-.21-1.403-.63-1.87-.42-.48-.99-.734-1.74-.794.66-.18 1.156-.45 1.456-.81.315-.344.465-.824.465-1.424 0-.48-.103-.885-.3-1.26-.21-.36-.493-.645-.883-.87-.345-.195-.735-.315-1.215-.405-.464-.074-1.29-.12-2.474-.12H5.654v10.486H8.61zm.736-4.185c.705 0 1.185.088 1.44.262.27.18.39.495.39.93 0 .405-.135.69-.42.855-.27.18-.765.254-1.44.254H8.31v-2.297h1.05zm8.656.706v-7.06h-2.46v7.06H18zM8.925 9.08c.71 0 1.185.08 1.432.24.245.16.367.435.367.83 0 .38-.13.646-.39.804-.265.154-.747.232-1.452.232h-.57V9.08h.615z'/></svg>
 </a><script>
 (function (d) {
   var u = &#39;https://b.hatena.ne.jp/add?mode=confirm&amp;url=&#39; + encodeURIComponent(&quot;<data:post.url/>&quot;) + &#39;&amp;title=&#39; + encodeURIComponent(&quot;<data:post.title/>&quot;);
 d.currentScript.previousSibling.setAttribute(&#39;href&#39;, u);
 })(document);
 </script>
-<a class='share pocket' expr:href='&quot;https://getpocket.com/edit?url=&quot; + data:post.url' target="_blank" rel="nofollow">
-<svg height="32px" role="img" viewBox="-12 -12 48 48" xmlns="http://www.w3.org/2000/svg"><title>Pocketに保存</title><path d="M18.813 10.259l-5.646 5.419c-.32.305-.73.458-1.141.458-.41 0-.821-.153-1.141-.458l-5.646-5.419c-.657-.628-.677-1.671-.049-2.326.63-.657 1.671-.679 2.325-.05l4.511 4.322 4.517-4.322c.66-.631 1.697-.607 2.326.049.631.645.615 1.695-.045 2.326l-.011.001zm5.083-7.546c-.299-.858-1.125-1.436-2.041-1.436H2.179c-.9 0-1.717.564-2.037 1.405-.094.25-.142.511-.142.774v7.245l.084 1.441c.348 3.277 2.047 6.142 4.682 8.139.045.036.094.07.143.105l.03.023c1.411 1.03 2.989 1.728 4.694 2.072.786.158 1.591.24 2.389.24.739 0 1.481-.067 2.209-.204.088-.029.176-.045.264-.06.023 0 .049-.015.074-.029 1.633-.36 3.148-1.036 4.508-2.025l.029-.031.135-.105c2.627-1.995 4.324-4.862 4.686-8.148L24 10.678V3.445c0-.251-.031-.5-.121-.742l.017.01z"/></svg>
+<a class='share pocket' expr:href='&quot;https://getpocket.com/edit?url=&quot; + data:post.url' rel='nofollow' target='_blank'>
+<svg height='32px' role='img' viewBox='-12 -12 48 48' xmlns='http://www.w3.org/2000/svg'><title>Pocketに保存</title><path d='M18.813 10.259l-5.646 5.419c-.32.305-.73.458-1.141.458-.41 0-.821-.153-1.141-.458l-5.646-5.419c-.657-.628-.677-1.671-.049-2.326.63-.657 1.671-.679 2.325-.05l4.511 4.322 4.517-4.322c.66-.631 1.697-.607 2.326.049.631.645.615 1.695-.045 2.326l-.011.001zm5.083-7.546c-.299-.858-1.125-1.436-2.041-1.436H2.179c-.9 0-1.717.564-2.037 1.405-.094.25-.142.511-.142.774v7.245l.084 1.441c.348 3.277 2.047 6.142 4.682 8.139.045.036.094.07.143.105l.03.023c1.411 1.03 2.989 1.728 4.694 2.072.786.158 1.591.24 2.389.24.739 0 1.481-.067 2.209-.204.088-.029.176-.045.264-.06.023 0 .049-.015.074-.029 1.633-.36 3.148-1.036 4.508-2.025l.029-.031.135-.105c2.627-1.995 4.324-4.862 4.686-8.148L24 10.678V3.445c0-.251-.031-.5-.121-.742l.017.01z'/></svg>
 </a>
               <b:if cond='data:top.showMobileShare'>
                 <div class='mobile-link-button goog-inline-block' id='mobile-share-button'>
@@ -1040,24 +1014,24 @@ d.currentScript.previousSibling.setAttribute(&#39;href&#39;, u);
       </span> </div -->
 
       <div class='post-footer-line post-footer-line-3'><span class='reaction-buttons'>
-<a class='share twitter' href='' target='_blank' rel='nofollow'>
-<svg height="32px" role="img" viewBox="-12 -12 48 48" xmlns="http://www.w3.org/2000/svg"><title>Twitterでシェア</title><path d="M23.954 4.569c-.885.389-1.83.654-2.825.775 1.014-.611 1.794-1.574 2.163-2.723-.951.555-2.005.959-3.127 1.184-.896-.959-2.173-1.559-3.591-1.559-2.717 0-4.92 2.203-4.92 4.917 0 .39.045.765.127 1.124C7.691 8.094 4.066 6.13 1.64 3.161c-.427.722-.666 1.561-.666 2.475 0 1.71.87 3.213 2.188 4.096-.807-.026-1.566-.248-2.228-.616v.061c0 2.385 1.693 4.374 3.946 4.827-.413.111-.849.171-1.296.171-.314 0-.615-.03-.916-.086.631 1.953 2.445 3.377 4.604 3.417-1.68 1.319-3.809 2.105-6.102 2.105-.39 0-.779-.023-1.17-.067 2.189 1.394 4.768 2.209 7.557 2.209 9.054 0 13.999-7.496 13.999-13.986 0-.209 0-.42-.015-.63.961-.689 1.8-1.56 2.46-2.548l-.047-.02z"/></svg>
+<a class='share twitter' href='' rel='nofollow' target='_blank'>
+<svg height='32px' role='img' viewBox='-12 -12 48 48' xmlns='http://www.w3.org/2000/svg'><title>Twitterでシェア</title><path d='M23.954 4.569c-.885.389-1.83.654-2.825.775 1.014-.611 1.794-1.574 2.163-2.723-.951.555-2.005.959-3.127 1.184-.896-.959-2.173-1.559-3.591-1.559-2.717 0-4.92 2.203-4.92 4.917 0 .39.045.765.127 1.124C7.691 8.094 4.066 6.13 1.64 3.161c-.427.722-.666 1.561-.666 2.475 0 1.71.87 3.213 2.188 4.096-.807-.026-1.566-.248-2.228-.616v.061c0 2.385 1.693 4.374 3.946 4.827-.413.111-.849.171-1.296.171-.314 0-.615-.03-.916-.086.631 1.953 2.445 3.377 4.604 3.417-1.68 1.319-3.809 2.105-6.102 2.105-.39 0-.779-.023-1.17-.067 2.189 1.394 4.768 2.209 7.557 2.209 9.054 0 13.999-7.496 13.999-13.986 0-.209 0-.42-.015-.63.961-.689 1.8-1.56 2.46-2.548l-.047-.02z'/></svg>
 </a><script>
 (function (d) {
   var u = &#39;https://twitter.com/share?url=&#39; + encodeURIComponent(&quot;<data:post.url/>&quot;) + &#39;&amp;text=&#39; + encodeURIComponent(&quot;<data:post.title/>&quot;);
 d.currentScript.previousSibling.setAttribute(&#39;href&#39;, u);
 })(document);
 </script>
-<a class='share hatena' href='' target='_blank' rel='nofollow'>
-<svg height='32px' role="img" viewBox="-12 -12 48 48" xmlns="http://www.w3.org/2000/svg"><title>はてなブックマークに追加</title><path d="M20.47 0C22.42 0 24 1.58 24 3.53v16.94c0 1.95-1.58 3.53-3.53 3.53H3.53C1.58 24 0 22.42 0 20.47V3.53C0 1.58 1.58 0 3.53 0h16.94zm-3.705 14.47c-.78 0-1.41.63-1.41 1.41s.63 1.414 1.41 1.414 1.41-.645 1.41-1.425-.63-1.41-1.41-1.41zM8.61 17.247c1.2 0 2.056-.042 2.58-.12.526-.084.976-.222 1.32-.412.45-.232.78-.564 1.02-.99s.36-.915.36-1.48c0-.78-.21-1.403-.63-1.87-.42-.48-.99-.734-1.74-.794.66-.18 1.156-.45 1.456-.81.315-.344.465-.824.465-1.424 0-.48-.103-.885-.3-1.26-.21-.36-.493-.645-.883-.87-.345-.195-.735-.315-1.215-.405-.464-.074-1.29-.12-2.474-.12H5.654v10.486H8.61zm.736-4.185c.705 0 1.185.088 1.44.262.27.18.39.495.39.93 0 .405-.135.69-.42.855-.27.18-.765.254-1.44.254H8.31v-2.297h1.05zm8.656.706v-7.06h-2.46v7.06H18zM8.925 9.08c.71 0 1.185.08 1.432.24.245.16.367.435.367.83 0 .38-.13.646-.39.804-.265.154-.747.232-1.452.232h-.57V9.08h.615z"/></svg>
+<a class='share hatena' href='' rel='nofollow' target='_blank'>
+<svg height='32px' role='img' viewBox='-12 -12 48 48' xmlns='http://www.w3.org/2000/svg'><title>はてなブックマークに追加</title><path d='M20.47 0C22.42 0 24 1.58 24 3.53v16.94c0 1.95-1.58 3.53-3.53 3.53H3.53C1.58 24 0 22.42 0 20.47V3.53C0 1.58 1.58 0 3.53 0h16.94zm-3.705 14.47c-.78 0-1.41.63-1.41 1.41s.63 1.414 1.41 1.414 1.41-.645 1.41-1.425-.63-1.41-1.41-1.41zM8.61 17.247c1.2 0 2.056-.042 2.58-.12.526-.084.976-.222 1.32-.412.45-.232.78-.564 1.02-.99s.36-.915.36-1.48c0-.78-.21-1.403-.63-1.87-.42-.48-.99-.734-1.74-.794.66-.18 1.156-.45 1.456-.81.315-.344.465-.824.465-1.424 0-.48-.103-.885-.3-1.26-.21-.36-.493-.645-.883-.87-.345-.195-.735-.315-1.215-.405-.464-.074-1.29-.12-2.474-.12H5.654v10.486H8.61zm.736-4.185c.705 0 1.185.088 1.44.262.27.18.39.495.39.93 0 .405-.135.69-.42.855-.27.18-.765.254-1.44.254H8.31v-2.297h1.05zm8.656.706v-7.06h-2.46v7.06H18zM8.925 9.08c.71 0 1.185.08 1.432.24.245.16.367.435.367.83 0 .38-.13.646-.39.804-.265.154-.747.232-1.452.232h-.57V9.08h.615z'/></svg>
 </a><script>
 (function (d) {
   var u = &#39;https://b.hatena.ne.jp/add?mode=confirm&amp;url=&#39; + encodeURIComponent(&quot;<data:post.url/>&quot;) + &#39;&amp;title=&#39; + encodeURIComponent(&quot;<data:post.title/>&quot;);
 d.currentScript.previousSibling.setAttribute(&#39;href&#39;, u);
 })(document);
 </script>
-<a class='share pocket' expr:href='&quot;https://getpocket.com/edit?url=&quot; + data:post.url' target='_blank' rel='nofollow'>
-<svg height="32px" role="img" viewBox="-12 -12 48 48" xmlns="http://www.w3.org/2000/svg"><title>Pocketに保存</title><path d="M18.813 10.259l-5.646 5.419c-.32.305-.73.458-1.141.458-.41 0-.821-.153-1.141-.458l-5.646-5.419c-.657-.628-.677-1.671-.049-2.326.63-.657 1.671-.679 2.325-.05l4.511 4.322 4.517-4.322c.66-.631 1.697-.607 2.326.049.631.645.615 1.695-.045 2.326l-.011.001zm5.083-7.546c-.299-.858-1.125-1.436-2.041-1.436H2.179c-.9 0-1.717.564-2.037 1.405-.094.25-.142.511-.142.774v7.245l.084 1.441c.348 3.277 2.047 6.142 4.682 8.139.045.036.094.07.143.105l.03.023c1.411 1.03 2.989 1.728 4.694 2.072.786.158 1.591.24 2.389.24.739 0 1.481-.067 2.209-.204.088-.029.176-.045.264-.06.023 0 .049-.015.074-.029 1.633-.36 3.148-1.036 4.508-2.025l.029-.031.135-.105c2.627-1.995 4.324-4.862 4.686-8.148L24 10.678V3.445c0-.251-.031-.5-.121-.742l.017.01z"/></svg>
+<a class='share pocket' expr:href='&quot;https://getpocket.com/edit?url=&quot; + data:post.url' rel='nofollow' target='_blank'>
+<svg height='32px' role='img' viewBox='-12 -12 48 48' xmlns='http://www.w3.org/2000/svg'><title>Pocketに保存</title><path d='M18.813 10.259l-5.646 5.419c-.32.305-.73.458-1.141.458-.41 0-.821-.153-1.141-.458l-5.646-5.419c-.657-.628-.677-1.671-.049-2.326.63-.657 1.671-.679 2.325-.05l4.511 4.322 4.517-4.322c.66-.631 1.697-.607 2.326.049.631.645.615 1.695-.045 2.326l-.011.001zm5.083-7.546c-.299-.858-1.125-1.436-2.041-1.436H2.179c-.9 0-1.717.564-2.037 1.405-.094.25-.142.511-.142.774v7.245l.084 1.441c.348 3.277 2.047 6.142 4.682 8.139.045.036.094.07.143.105l.03.023c1.411 1.03 2.989 1.728 4.694 2.072.786.158 1.591.24 2.389.24.739 0 1.481-.067 2.209-.204.088-.029.176-.045.264-.06.023 0 .049-.015.074-.029 1.633-.36 3.148-1.036 4.508-2.025l.029-.031.135-.105c2.627-1.995 4.324-4.862 4.686-8.148L24 10.678V3.445c0-.251-.031-.5-.121-.742l.017.01z'/></svg>
 </a>
         <b:if cond='data:top.showReactions'>
           <table border='0' cellpadding='0' cellspacing='0' width='100%'><tr>
