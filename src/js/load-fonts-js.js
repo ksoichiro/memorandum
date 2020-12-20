@@ -1,7 +1,12 @@
-(function (d, f) {
-  var l = d.createElement('link');
-  l.rel = 'stylesheet';
-  l.href = f;
-  var s = d.getElementsByTagName('script')[0];
-  s.parentNode.insertBefore(l, s);
-})(document, 'https://fonts.googleapis.com/css?family=Noto+Sans+JP:400,700&display=swap');
+WebFontConfig = {
+  google: { families: ['Noto Sans JP:400,700&display=swap'] },
+  active: function() {
+    sessionStorage.fonts = true;
+  }
+};
+(function(d) {
+  var wf = d.createElement('script'), s = d.scripts[0];
+  wf.src = 'https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js';
+  wf.async = true;
+  s.parentNode.insertBefore(wf, s);
+})(document);
