@@ -55,14 +55,23 @@ function _parseIso8601(iso8601Time) {
 var parseIso8601 = _parseIso8601(null);
 
 (function(){
-    $(function() {
+    function ready(fn) {
+        if (document.readyState != 'loading'){
+            fn();
+        } else {
+            document.addEventListener('DOMContentLoaded', fn);
+        }
+    }
+    ready(function() {
         var dateFormat = ["/", "/", ""];
         var timeFormat = [":", ""];
         var weekFormat = ["(日)", "(月)", "(火)", "(水)", "(木)", "(金)", "(土)"];
-        $(".post-timestampISO8601").each(function(i) {
-            var timestampIso8601 = $(this).html();
+        var els = document.querySelectorAll(".post-timestampISO8601");
+        for (var i = 0; i < els.length; i++) {
+            var el = els[i];
+            var timestampIso8601 = el.innerHTML;
             if(timestampIso8601 !== null) {
-                var dd = parseIso8601(timestampIso8601);
+                var dd = parseIso8601(el.innerHTML);
                 if (dd !== null) {
                     var ds = dd.getFullYear() + dateFormat[0];
                     ds += ("0" + (dd.getMonth() + 1)).substr(-2) + dateFormat[1];
@@ -70,9 +79,9 @@ var parseIso8601 = _parseIso8601(null);
                     ds += " " + weekFormat[dd.getDay()];
                     ds += " " + ("0" + dd.getHours()).substr(-2) + timeFormat[0];
                     ds += ("0" + dd.getMinutes()).substr(-2) + timeFormat[1];
-                    $(this).html(ds);
+                    el.innerHTML = ds;
                 }
             }
-        });
+        }
     });
 })();
